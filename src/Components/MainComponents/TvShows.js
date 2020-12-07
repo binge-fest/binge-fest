@@ -5,46 +5,61 @@ class TvShows extends Component {
   constructor() {
     super();
     this.state = {
-      tvShow: {
-        name: 'friends',
-        rating: 10
-      }
+      tvSearch: '',
+      tvGenre: '',
+      tvResult: {}
     }
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state);
     axios({
       url: 'http://api.tvmaze.com/singlesearch/shows',
       method: 'GET',
       responseType: 'json',
       params: {
-        q: 'friends'
+        q: this.state.tvSearch
       }
     }).then((res) => {
       console.log(res);
-    })
+      this.setState({
+        tvResult: {
+          name: res.data.name,
+          rating: res.data.rating.average
+        }
+      })
+
+      console.log(this.state.tvResult);
+      const dbRef = firebase.database().ref('/tvShows');
+      dbRef.push(this.state.tvResult);
+
+      dbRef.on('value', (snapshot) => {
+        const dataObject = snapshot.val();
+        console.log(dataObject);
+      })
+    })  
   }
+
   handleChange = (e) => {
+    const target = e.target;
+
     this.setState({
+      [target.name]: target.value  
     })
   }
-  componentDidMount() {
-    const dbRef = firebase.database().ref('/tvShows');
-    dbRef.push(this.state.tvShow);
-    dbRef.on('value', (snapshot) => {
-      const dataObject = snapshot.val();
-      console.log(dataObject);
-    })
-  }
+
   render() {
     return (
       <Fragment>
         <h2>Search for a TV Show</h2>
-        <form action="">
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="tvSearch"></label>
-          <input type="text" id="tvSearch" />
+          <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} />
+          <label htmlFor="tvGenre"></label>
+          <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
+          <button value="submit">Randomizer</button>
         </form>
-        <button>Randomizer</button>
       </Fragment>
     )
   }

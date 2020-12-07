@@ -5,6 +5,7 @@ import { Component } from 'react';
 import Restaurants from "./Components/MainComponents/Restaurants.js";
 import Results from "./Components/MainComponents/Results.js";
 import TvShows from './Components/MainComponents/TvShows.js';
+
 class App extends Component {
   constructor() {
     super();
@@ -12,8 +13,7 @@ class App extends Component {
       tvshow: []
     }
   }
-  // componentDidMount() {
-  // }
+ 
   handleClick = () => {
     axios({
       url: 'http://api.tvmaze.com/singlesearch/shows',
@@ -39,6 +39,7 @@ class App extends Component {
         longitude: -79.87237315283824,
       }
     }).then(res => console.log(res))
+    
   }
   render() {
     return (

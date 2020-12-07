@@ -2,6 +2,8 @@ import './App.css';
 import axios from 'axios';
 import Header from './Components/Header.js';
 import { Component } from 'react';
+import Restaurants from "./Components/MainComponents/Restaurants.js";
+import Results from "./Components/MainComponents/Results.js";
 
 class App extends Component {
   constructor() {
@@ -49,6 +51,10 @@ class App extends Component {
       <div className="App">
         <Header />
         <button onClick={this.handleClick}>Click meeee</button>
+
+        <Restaurants />
+
+        <Results />
 
       </div>
     );

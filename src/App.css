@@ -20,7 +20,7 @@ header {
   width: 80vw;
   margin-bottom: 200px;
 }
-.mapContainer h2 {
+.mapContainer .mapTitle {
   position: absolute;
   top: 0;
   left: 20px;

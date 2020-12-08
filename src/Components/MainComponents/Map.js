@@ -6,6 +6,7 @@ import {
   Marker,
   InfoWindow
 } from "@react-google-maps/api";
+
 import mapStyles from '../../mapStyles';
 
 const libraries = ["places"];
@@ -31,6 +32,7 @@ const Map = () => {
 
   const [marker, setMarker] = useState(null);
   const [yelpMarkers, setYelpMarkers] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   // the below function is to prevent rerenders
   const onMapClick = useCallback((event) => {
@@ -75,7 +77,7 @@ const Map = () => {
 
   return (
     <div className="mapContainer">
-      <h2>Binge Fest</h2>
+      <h2 class="mapTitle">Binge Fest</h2>
       <GoogleMap
         className="googleMap"
         mapContainerStyle={mapContainerStyle}
@@ -103,10 +105,26 @@ const Map = () => {
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(15, 15)
               }}  
+              onClick={() => {
+                setSelected(business);
+              }}
             />)
           })
           : null
         }
+        {selected ? (
+          <InfoWindow 
+            position={{ lat: selected.coordinates.latitude, lng: selected.coordinates.longitude }} 
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div className="infoWindow">
+              <h2>{selected.name}</h2>
+              <p>{selected.phone}</p>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
       <button onClick={handleClick}>Get Restaurants</button>
     </div>

@@ -1,19 +1,24 @@
-import { Component, Fragment } from 'react';
+import { Component, useState } from 'react';
 import firebase from '../../firebase.js';
+import Restaurants from "./Restaurants.js";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import axios from 'axios';
+
+
+
 class TvShows extends Component {
   constructor() {
     super();
     this.state = {
       tvSearch: '',
       tvGenre: '',
-      tvResult: {}
+      tvResult: {},
+      isOn: true
     }
     
   }
 
-  
-  
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +58,12 @@ class TvShows extends Component {
     })
   }
 
+
+
+
   render() {
+    const {isOn} = this.state
+
     return (
       <div id="tvShows" className="tvShows">
         <h2>Search for a TV Show</h2>
@@ -62,9 +72,37 @@ class TvShows extends Component {
           <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} />
           <label htmlFor="tvGenre"></label>
           <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
+          <button value="getShows"> Show Me The Shows!</button>
           <button value="submit">Randomizer</button>
         </form>
+        <div id="showResults" className="showResults">
+          <ul>
+            <li>SHOW NAME</li>
+          </ul>
+
+           
+    
+              <SwitchTransition mode="out-in">
+                <CSSTransition
+                  key={isOn ?  "on" : "off" }
+                  timeout={1000}
+                  classNames='fade'
+                >
+                <button onClick={() => this.setState({isOn: !isOn})}>
+                {isOn ? "on" : "off"}
+                </button>
+
+              </CSSTransition>
+            </SwitchTransition>
+  
+
+
+        
+            <button value="showRestaurants">Go to restaurants!</button>
+     
+        </div>
       </div>
+
     )
   }
 }

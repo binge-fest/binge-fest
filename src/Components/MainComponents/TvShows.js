@@ -3,7 +3,6 @@ import firebase from '../../firebase.js';
 import axios from 'axios';
 
 
-
 class TvShows extends Component {
   constructor() {
     super();
@@ -13,10 +12,7 @@ class TvShows extends Component {
       tvResult: {},
       isOn: true
     }
-    
   }
-
-
 
   handleSubmit = (e) => {
     e.preventDefault();

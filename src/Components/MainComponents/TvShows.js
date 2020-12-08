@@ -9,7 +9,11 @@ class TvShows extends Component {
       tvGenre: '',
       tvResult: {}
     }
+    
   }
+
+  
+  
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +55,7 @@ class TvShows extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div id="tvShows" className="tvShows">
         <h2>Search for a TV Show</h2>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="tvSearch"></label>
@@ -60,7 +64,7 @@ class TvShows extends Component {
           <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
           <button value="submit">Randomizer</button>
         </form>
-      </Fragment>
+      </div>
     )
   }
 }

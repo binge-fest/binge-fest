@@ -1,6 +1,7 @@
-import { Component, Fragment } from 'react';
+import { Component, useState } from 'react';
 import firebase from '../../firebase.js';
 import axios from 'axios';
+
 
 class TvShows extends Component {
   constructor() {
@@ -8,10 +9,10 @@ class TvShows extends Component {
     this.state = {
       tvSearch: '',
       tvGenre: '',
-      tvResult: {}
+      tvResult: {},
+      isOn: true
     }
   }
-  
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +52,12 @@ class TvShows extends Component {
     })
   }
 
+
+
+
   render() {
+    
+
     return (
       <div id="tvShows" className="tvShows">
         <h2>Search for a TV Show</h2>
@@ -60,9 +66,26 @@ class TvShows extends Component {
           <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} />
           <label htmlFor="tvGenre"></label>
           <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
+          <button value="getShows"> Show Me The Shows!</button>
           <button value="submit">Randomizer</button>
         </form>
+        <div id="showResults" className="showResults">
+          <ul>
+            <li>SHOW NAME</li>
+          </ul>
+
+           
+    
+              
+  
+
+
+        
+            <button value="showRestaurants">Go to restaurants!</button>
+     
+        </div>
       </div>
+
     )
   }
 }

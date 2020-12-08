@@ -1,7 +1,5 @@
 import { Component, useState } from 'react';
 import firebase from '../../firebase.js';
-import Restaurants from "./Restaurants.js";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
 import axios from 'axios';
 
 
@@ -62,7 +60,7 @@ class TvShows extends Component {
 
 
   render() {
-    const {isOn} = this.state
+    
 
     return (
       <div id="tvShows" className="tvShows">
@@ -82,18 +80,7 @@ class TvShows extends Component {
 
            
     
-              <SwitchTransition mode="out-in">
-                <CSSTransition
-                  key={isOn ?  "on" : "off" }
-                  timeout={1000}
-                  classNames='fade'
-                >
-                <button onClick={() => this.setState({isOn: !isOn})}>
-                {isOn ? "on" : "off"}
-                </button>
-
-              </CSSTransition>
-            </SwitchTransition>
+              
   
 
 

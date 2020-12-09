@@ -168,16 +168,30 @@ input[type="text"]:hover {
   width: 80vw;
   margin-bottom: 200px;
 }
-.mapContainer h2 {
+.mapContainer .mapTitle {
   position: absolute;
   top: 0;
   left: 20px;
   z-index: 10;
 }
-.mapConatiner .googleMap {
+/* .mapContainer .googleMap {
   position: absolute;
   top: 0;
-} 
+}  */
+.mapContainer .search {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+  font-size: 1.6rem;
+}
+.mapContainer .comboInput {
+  padding: 10px;
+  border: 3px solid #d6d6d6;
+}
 
 /* Results Styles */
 

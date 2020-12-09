@@ -1,6 +1,17 @@
 import {Component, Fragment} from "react";
+import firebase from '../../firebase.js';
 
 class Results extends Component {
+
+  
+  componentDidMount(){
+    const dbRefRestaurant = firebase.database().ref('/restaurantsList');
+    dbRefRestaurant.push(this.props.restaurantResult);
+
+    const dbRefTvShows = firebase.database().ref('/tvShows');
+    dbRefTvShows.push(this.props.tvResult);
+  }
+
   render () {
     return (
       <section className="results">
@@ -34,9 +45,7 @@ class Results extends Component {
           </div>
         </div>
       </section>
-      
     )
-
   }
 }
 

@@ -60,29 +60,28 @@ class TvShows extends Component {
 
     return (
       <div id="tvShows" className="tvShows">
-        <h2>Search for a TV Show</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="tvSearch"></label>
-          <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} />
-          <label htmlFor="tvGenre"></label>
-          <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
-          <button value="getShows"> Show Me The Shows!</button>
-          <button value="submit">Randomizer</button>
-        </form>
-        <div id="showResults" className="showResults">
-          <ul>
-            <li>SHOW NAME</li>
-          </ul>
-
-           
-    
-              
-  
-
-
-        
-            <button value="showRestaurants">Go to restaurants!</button>
-     
+        <div className="wrapper">
+          <h2>Search for a TV Show</h2>
+          <div className="showContainer">
+            <div className="showSearch">
+              <form onSubmit={this.handleSubmit}>
+                <label htmlFor="tvSearch">Search for Show:</label>
+                <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} />
+                <label htmlFor="tvGenre">Search for Genre:</label>
+                <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} />
+                <button value="getShows" className="showMeShows">Show Me The Shows!</button>
+                <button value="submit" className="showRandomizer"><i className="fas fa-random" title="Click for random option"></i></button>
+              </form>
+            </div>
+            <div id="showResults" className="showSelections">
+              <ul>
+                <li>
+                  <h3>Show title <a href="#"><i class="fas fa-bookmark" title="Add to favourites"></i></a></h3>
+                </li>
+              </ul>
+              <button value="showRestaurants" className="goToRestaurants">Go to restaurants!</button>
+            </div>
+          </div>
         </div>
       </div>
 

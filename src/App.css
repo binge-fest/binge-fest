@@ -8,12 +8,160 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* Global Styles */
+
+.wrapper {
+  max-width: 1280px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+body {
+  font-size: 62.5%;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Header Styles */
+
+header {
+  /* colours in client brief incorrect */
+  background-color: #700014;
+  text-align: center;
+  /* min-height: 65vh; */
+}
+
+h1 {
+  margin-top: 0;
+  padding-top: 150px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 4.5rem;
+  letter-spacing: 0.4rem;
+}
+
+h1,
+header p {
+  color: #ebe3ca;
+}
+
+header p {
+  margin-bottom: 50px;
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .tvShows,
 .restaurants,
 .results,
 header {
   height: 100vh;
 }
+
+.headerLink {
+  padding: 15px;
+  background-color: #f46e00;
+  border: 2px solid #ebe3ca;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ebe3ca;
+}
+
+.headerLink:focus,
+.headerLink:hover {
+  background-color: #ebe3ca;
+  border: 2px solid #f46e00;
+  box-shadow: 0 0 10px #f46e00;
+}
+
+/* TV Component Styles */
+
+.tvShows {
+  background-color: #ebe3ca;
+}
+
+.tvShows h2 {
+  font-family: 'Kanit', sans-serif;
+  margin-top: 0;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.showContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.showSearch {
+  border-right: 2px solid black;
+  padding-right: 20px;
+}
+
+label {
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif
+}
+
+input[type="text"] {
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="text"]:hover {
+  border: 1px solid #f46e00;
+  background-color: white;
+}
+
+
+.showSelections {
+  padding-left: 20px;
+}
+
+.tvShows button {
+  background-color: #700014;
+  color: #ebe3ca;
+  padding: 15px;
+  font-size: 1rem;
+  border: 2px solid black;
+  font-family: 'Montserrat', sans-serif
+}
+
+.tvShows button:hover,
+.tvShows button:focus {
+  background-color: #f46e00;
+}
+
+.fa-bookmark {
+  color: #700014;
+}
+
+.fa-bookmark:hover,
+.fa-bookmark:focus {
+  color: #f46e00;
+}
+
+.showMeShows {
+  margin-right: 10px;
+}
+
+.showSelections h3 {
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif
+}
+
 .mapContainer {
   position: relative;
   height: 80vh;
@@ -45,10 +193,70 @@ header {
   border: 3px solid #d6d6d6;
 }
 
-.headerLink {
-  padding: 10px;
-  background-color: red;
-  cursor: pointer;
+/* Results Styles */
+
+.results {
+  background-color: #700014;
+  color: #ebe3ca;
 }
+
+.results h2 {
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  font-size: 3rem;
+  padding-top: 10px;
+}
+
+.allResults {
+  display: flex;
+  justify-content: center;
+  border: 2px solid #f46e00;
+  border-radius: 25px;
+}
+
+.showResults h2,
+.foodResults h2 {
+  font-family: 'Kanit', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.2rem;
+}
+
+.results h3,
+.results h4,
+.results p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+}
+
+.showResults {
+  border-right: 2px solid #ebe3ca;
+  padding-right: 20px;
+}
+
+.foodResults {
+  padding-left: 20px;
+}
+
+/* Footer Styles */
+
+footer {
+  text-align: center;
+  background-color: #ebe3ca;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #f46e00;
+}
+
+
+
 
 

@@ -6,6 +6,7 @@ import Restaurants from "./Components/MainComponents/Restaurants.js";
 import Results from "./Components/MainComponents/Results.js";
 import TvShows from './Components/MainComponents/TvShows.js';
 import Map from './Components/MainComponents/Map.js';
+import Footer from './Components/Footer.js';
 
 
 
@@ -32,17 +33,18 @@ class App extends Component {
             classNames='fade'
           >
             <div>
+              {isOn ? (<TvShows />) : (<Restaurants />)}
               <button onClick={() => this.setState({ isOn: !isOn })}>
                 {isOn ? "Tv Shows" : "Restaurants"}
               </button>
 
-              {isOn ? (<TvShows />) : (<Restaurants />)}
             </div>
           </CSSTransition>
         </SwitchTransition>
         
         <Map />
         <Results />
+        <Footer />
       </div>
     );
   }

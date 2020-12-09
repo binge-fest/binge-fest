@@ -5,21 +5,29 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Restaurants from "./Components/MainComponents/Restaurants.js";
 import Results from "./Components/MainComponents/Results.js";
 import TvShows from './Components/MainComponents/TvShows.js';
-import Map from './Components/MainComponents/Map.js';
 import Footer from './Components/Footer.js';
-
-
-
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-    isOn: true
+      isOn: true,
+      restaurant: null,
     }
   }
-  render() {
 
+  addRestaurants = (restaurantList) => {
+    console.log(restaurantList);
+    const length = restaurantList.length;
+    const random = Math.floor(Math.random() * length);
+    console.log(Math.floor(Math.random() * length));
+  
+    this.setState({
+      restaurant: restaurantList[random]
+    })
+  }
+
+  render() {
     const { isOn } = this.state
 
     return (
@@ -33,7 +41,9 @@ class App extends Component {
             classNames='fade'
           >
             <div>
-              {isOn ? (<TvShows />) : (<Restaurants />)}
+              {isOn 
+                ? (<TvShows />) 
+                : (<Restaurants addRestaurants={this.addRestaurants} />)}
               <button onClick={() => this.setState({ isOn: !isOn })}>
                 {isOn ? "Tv Shows" : "Restaurants"}
               </button>
@@ -41,9 +51,11 @@ class App extends Component {
             </div>
           </CSSTransition>
         </SwitchTransition>
-        
-        <Map />
-        <Results />
+
+        {this.state.restaurant
+          ? <Results restaurant={this.state.restaurant} />
+          : null
+        }
         <Footer />
       </div>
     );

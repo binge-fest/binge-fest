@@ -2,17 +2,14 @@ import {Component, Fragment} from "react";
 import firebase from '../../firebase.js';
 
 class Results extends Component {
-
-  
   componentDidMount(){
-    const dbRefRestaurant = firebase.database().ref('/restaurantsList');
-    dbRefRestaurant.push(this.props.restaurantResult);
-
     const dbRefTvShows = firebase.database().ref('/tvShows');
     dbRefTvShows.push(this.props.tvResult);
   }
 
   render () {
+    const { name, rating, review_count, price, categories, display_phone, distance } = this.props.restaurant;
+
     return (
       <section className="results">
         <div className="wrapper">
@@ -32,12 +29,14 @@ class Results extends Component {
             <div className="foodResults">
               <h2>Your Food</h2>
 
-              <h3>Restaurant Name</h3>
-              <h4>Rating, Review Count</h4>
-              <h4>Price</h4>
-              <h4>Cuisine</h4>
-              <h4>Phone Number</h4>
-              <h4>Distance</h4>
+              <h3>{name}</h3>
+              <h4>Rating: {rating}, Reviews: {review_count}</h4>
+              <h4>{price}</h4>
+              <h4>{categories.map(category => {
+                return category.title + ', '
+              })}</h4>
+              <h4>Phone: {display_phone}</h4>
+              <h4>Distance from user: {Math.round(distance / 100) / 10}</h4>
 
               <img src="" alt="" />
 

@@ -144,6 +144,18 @@ input[type="text"]:hover {
   background-color: #f46e00;
 }
 
+.tvShows label { 
+  cursor: pointer;
+  padding: 20px 10px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #700014;
+}
+
+.tvImage {
+  width: 200px;
+}
+
 .fa-bookmark {
   color: #700014;
 }
@@ -236,6 +248,9 @@ input[type="text"]:hover {
 .foodResults {
   padding-left: 20px;
 }
+.foodImage {
+  width: 400px;
+}
 
 /* Footer Styles */
 
@@ -256,6 +271,10 @@ footer a:focus {
   color: #f46e00;
 }
 
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
 
 
 

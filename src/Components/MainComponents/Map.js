@@ -36,7 +36,7 @@ const options = {
   zoomControl: true,
 };
 
-const Map = () => {
+const Map = ({ addRestaurants }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBfwMS0eamgOLogYGDPaNVMk7ZivEWhWlA",
     libraries,
@@ -89,6 +89,7 @@ const Map = () => {
         },
       }).then((res) => {
         console.log(res);
+        addRestaurants(res.data.businesses);
         setYelpMarkers(res.data.businesses);
       });
     }

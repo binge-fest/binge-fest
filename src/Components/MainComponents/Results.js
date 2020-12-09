@@ -8,7 +8,7 @@ class Results extends Component {
   }
 
   render () {
-    const { name, rating, review_count, price, categories, display_phone, distance } = this.props.restaurant;
+    const { name, rating, review_count, price, categories, display_phone, distance, image_url } = this.props.restaurant;
 
     return (
       <section className="results">
@@ -29,16 +29,15 @@ class Results extends Component {
             <div className="foodResults">
               <h2>Your Food</h2>
 
-              <h3>{name}</h3>
+              <h3>{name} ({price})</h3>
               <h4>Rating: {rating}, Reviews: {review_count}</h4>
-              <h4>{price}</h4>
               <h4>{categories.map(category => {
                 return category.title + ', '
               })}</h4>
               <h4>Phone: {display_phone}</h4>
               <h4>Distance from user: {Math.round(distance / 100) / 10}</h4>
 
-              <img src="" alt="" />
+              <img src={image_url} alt="" className="foodImage" />
 
             </div>
           </div>

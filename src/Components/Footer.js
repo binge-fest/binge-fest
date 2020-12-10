@@ -4,7 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <footer>
-        © Melissa Cappe, Laura Stanley, Reza Soleimani & Greg Forster for <a href="https://junocollege.com/">Juno College</a>
+        &copy; Melissa Cappe, Laura Stanley, Reza Soleimani & Greg Forster for <a href="https://junocollege.com/">Juno College</a>
       </footer>
     )
   }

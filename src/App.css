@@ -177,7 +177,7 @@ header {
 
 /* TV Component Styles */
 
-.tvShows {
+.tvShows, .restaurants {
   background-color: #ebe3ca;
 }
 
@@ -247,9 +247,7 @@ input[type=radio] {
   margin-bottom: 15px;
   font-size: 1rem;
   border: 2px solid black;
-  font-family: 'Montserrat', sans-serif;
-
-  
+  font-family: 'Montserrat', sans-serif;  
 }
 
 .tvShows button:hover,
@@ -327,6 +325,36 @@ input[type=radio] {
   font-family: 'Montserrat', sans-serif
 }
 
+
+.restaurants {
+  position: relative;
+}
+.restaurants .changeScreen {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 64px;
+  width: 64px;
+  /* background-color: blue; */
+  border-radius: 50%;
+  padding: 10px;
+  border: 3px solid black;
+  background: linear-gradient(
+    to right,
+    #f46e00 50%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.7s ease-in;
+}
+.restaurants .changeScreen:hover {
+  background-position: left bottom;
+}
+.restaurants .changeScreen img {
+  height: 100%;
+  width: 100%;
+}
 .restaurants .restaurantWrapper {
   display: flex;
   justify-content: space-between;
@@ -337,16 +365,29 @@ input[type=radio] {
 .restaurantResults {
   width: 40%;
   font-size: 1.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 80vh;
 }
 .restaurantResults .restaurant {
   display: flex;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 98%;
 }
-.restaurantResults .restaurant img {
+.restaurantResults .restaurantImage {
   width: 25%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+
 }
 .mapContainer {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 6px;
   position: relative;
   height: 80vh;
   max-height: 800px;

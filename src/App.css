@@ -14,6 +14,8 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   max-width: 1280px;
   width: 85%;
   margin: 0 auto;
+  position: relative;
+  top: 35%;
 }
 
 body {
@@ -39,7 +41,6 @@ header {
 
 h1 {
   margin-top: 0;
-  padding-top: 150px;
   font-family: 'Kanit', sans-serif;
   font-size: 4.5rem;
   letter-spacing: 0.4rem;
@@ -51,7 +52,7 @@ header p {
 }
 
 header p {
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   font-size: 1.5rem;
   font-family: 'Montserrat', sans-serif;
 }
@@ -61,22 +62,72 @@ header {
 }
 
 .headerLink {
-  padding: 15px;
-  background-color: #f46e00;
-  border: 2px solid #ebe3ca;
+  padding: 15px 80px;
+
   cursor: pointer;
   font-size: 1.4rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  box-shadow: 0 0 10px #ebe3ca;
+  text-transform: uppercase;
+  border-radius: 4px;
+
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+  background: #ebe3ca;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
-.headerLink:focus,
+/* .headerLink:focus,
 .headerLink:hover {
   background-color: #ebe3ca;
   border: 2px solid #f46e00;
   box-shadow: 0 0 10px #f46e00;
+} */
+
+.headerLink:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f46e00;
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
+
+.headerLink:hover,
+.headerLink:focus,
+.headerLink:active {
+  color:#ebe3ca;
+}
+
+.headerLink:hover:before,
+.headerLink:focus:before,
+.headerLink:active:before {
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+
 
 /* TV Component Styles */
 

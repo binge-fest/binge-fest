@@ -335,6 +335,47 @@ input[type=radio] {
   margin-right: 15px;
 }
 
+.restaurant {
+  position: relative;
+}
+
+.removeRestaurant {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  color: #700014;
+  cursor: pointer;
+}
+
+.addRestaurantToFave {
+  position: absolute;
+  font-size: 1rem;
+  bottom: 5px;
+  right: 5px;
+  color: #700014;
+  cursor: pointer;
+}
+
+.removeRestaurant:hover,
+.removeRestaurant:focus,
+.addRestaurantToFave:hover,
+.addRestaurantToFave:focus {
+  color: #f46e00;
+}
+
+.getRestaurantsButton,
+.gotToResults {
+  background-color: #700014;
+}
+
+.getRestaurantsButton {
+  color: #ebe3ca;
+}
+
+.showMeResultsDiv {
+  padding-bottom: 15px;
+}
+
 /* Map styles */
 
 
@@ -355,6 +396,8 @@ input[type=radio] {
   left: 20px;
   z-index: 10;
 }
+
+
 
 .data-reach-combobox {
   width: 200px;
@@ -389,7 +432,10 @@ input[type=radio] {
   
 }
 
-
+.goToResults {
+  background-color: #700014;
+  color: #ebe3ca;
+}
 
 
 
@@ -493,8 +539,18 @@ footer a:focus {
   color: #f46e00;
 }
 
+/* Responsive Design */
 
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+}
 
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+}
 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+}
 
 

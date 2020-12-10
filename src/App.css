@@ -80,14 +80,12 @@ header {
 
 .buttons {
   padding: 15px 80px;
-
   cursor: pointer;
   font-size: 1.4rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 4px;
-
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: translateZ(0);
@@ -258,6 +256,9 @@ input[type=radio] {
   font-family: 'Montserrat', sans-serif
 }
 
+/* Restaurants styles */
+
+
 .restaurants {
   position: relative;
 }
@@ -327,6 +328,9 @@ input[type=radio] {
   margin-right: 15px;
 }
 
+/* Map styles */
+
+
 .mapContainer {
   padding: 10px;
   background-color: #eee;
@@ -368,6 +372,22 @@ input[type=radio] {
   padding: 10px;
   border: 3px solid #d6d6d6;
 }
+
+.getRestaurantsButton {
+  margin-top: 30px;
+}
+
+.showMeResultsDiv {
+  text-align: right;
+  
+}
+
+
+
+
+
+
+
 
 /* Results Styles */
 .results {

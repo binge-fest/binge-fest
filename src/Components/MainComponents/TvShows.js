@@ -116,9 +116,9 @@ class TvShows extends Component {
                   </label>
                 </fieldset>
                 
-                <button value="getShows" className="buttons" id="red">Search</button>
-                <button value="submit" className="buttons" id="red"><i className="fas fa-random" title="Click for random option"></i></button>
-                <button className="buttons" id="red" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
+                <button value="getShows" className="buttons dark">Search</button>
+                <button value="submit" className="buttons dark"><i className="fas fa-random" title="Click for random option"></i></button>
+                <button className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
               </form>
             </div>
             <div id="showResults" className="showSelections">

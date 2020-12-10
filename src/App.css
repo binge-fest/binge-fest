@@ -131,7 +131,7 @@ header {
   background-color: #f46e00;
 }
 
-#red {
+.dark {
   background-color: #700014;
   color: #ebe3ca;
   margin: 5px;

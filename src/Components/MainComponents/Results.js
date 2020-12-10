@@ -67,6 +67,9 @@ class Results extends Component {
 
             </div>
           </div>
+          <div className="chooseAnotherDiv">
+              <button className="chooseAnother">FIND ANOTHER SELECTION</button>
+          </div>
         </div>
       </section>
     )

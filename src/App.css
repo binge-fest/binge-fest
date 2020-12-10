@@ -364,9 +364,10 @@ input[type=radio] {
 }
 .restaurantResults {
   width: 40%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   overflow-y: auto;
   max-height: 80vh;
+  font-family: 'Montserrat', sans-serif;
 }
 .restaurantResults .restaurant {
   display: flex;
@@ -382,7 +383,11 @@ input[type=radio] {
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 3px;
+}
 
+.restaurantImage {
+  border: 3px solid #700014;
+  margin-right: 15px;
 }
 .mapContainer {
   padding: 10px;

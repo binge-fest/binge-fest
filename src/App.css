@@ -174,23 +174,30 @@ input[type="text"]:hover {
   font-family: 'Montserrat', sans-serif
 }
 
-
-
-.restaurants .wrapper {
+.restaurants .restaurantWrapper {
   display: flex;
   justify-content: space-between;
+  width: 95%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 .restaurantResults {
   width: 40%;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
-
-.mapComponent {
-  width: 10%;
+.restaurantResults .restaurant {
+  display: flex;
+}
+.restaurantResults .restaurant img {
+  width: 25%;
 }
 .mapContainer {
   position: relative;
   height: 80vh;
-  width: 55vw;
+  max-height: 800px;
+  width: 47.5vw;
   margin-bottom: 200px;
 }
 .mapContainer .mapTitle {
@@ -203,15 +210,21 @@ input[type="text"]:hover {
   position: absolute;
   top: 0;
 }  */
+.data-reach-combobox {
+  width: 200px;
+}
 .mapContainer .search {
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 400px;
   z-index: 10;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+}
+/* this is styling for the drop down list when searching locations, the class provided is from the react */
+[data-reach-combobox-option] {
+  font-size: 160%;
+  font-family: 'Montserrat', sans-serif;
 }
 .mapContainer .comboInput {
   padding: 10px;

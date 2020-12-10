@@ -60,6 +60,9 @@ header p {
 header {
   height: 100vh;
 }
+.tvShows, .restaurants {
+  min-height: 100vh;
+}
 
 .headerLink {
   padding: 15px 80px;
@@ -95,7 +98,7 @@ header {
   box-shadow: 0 0 10px #f46e00;
 } */
 
-.headerLink:before {
+/* .headerLink:before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -126,7 +129,50 @@ header {
 .headerLink:active:before {
   -webkit-transform: scale(2);
   transform: scale(2);
+} */
+@-webkit-keyframes headerLink {
+  50% {
+    background-color: rgba(244, 110, 0, 0.75);
+  }
 }
+
+@keyframes headerLink {
+  50% {
+    background-color: rgba(244, 110, 0, 0.75);
+  }
+}
+
+.headerLink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0); */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, #f46e00;
+  transition-property: color, #f46e00;
+}
+.headerLink:hover, .headerLink:focus, .headerLink:active {
+  -webkit-animation-name: headerLink;
+  animation-name: headerLink;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #f46e00;
+  background-color: #f46e00;
+  color: white;
+}
+
 
 
 /* TV Component Styles */
@@ -255,19 +301,21 @@ input[type=radio] {
 
 .tvImage {
   width: 200px;
+  margin-right: 15px;
 }
-
 .fa-bookmark {
   color: #700014;
   text-shadow: 0 0 5px white;
   font-size: 2rem;
   position: absolute;
-  bottom: 35px;
-  right: 40px;
+  bottom: 23px;
+  right: 30px;
+  cursor: pointer;
 }
 
 .fa-bookmark:hover,
-.fa-bookmark:focus {
+.fa-bookmark:focus,
+.fa-bookmark:visited {
   color: #f46e00;
 }
 
@@ -348,6 +396,7 @@ input[type=radio] {
   font-family: 'Kanit', sans-serif;
   font-size: 3rem;
   padding-top: 10px;
+  margin-top: 0;
 }
 
 .allResults {
@@ -396,6 +445,11 @@ input[type=radio] {
   width: 400px;
   height: 50%;
 }
+.showImg img {
+  width: 200px;
+  float: left; /* lolol */
+  margin-right: 20px;
+} 
 
 /* Footer Styles */
 

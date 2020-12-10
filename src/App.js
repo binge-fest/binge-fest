@@ -27,8 +27,12 @@ class App extends Component {
     })
   }
 
+  changeInputScreen = () => {
+    this.setState({ isOn: !this.state.isOn })
+  }
+
   render() {
-    const { isOn } = this.state
+    // const { isOn } = this.state
 
     return (
       <div className="app">
@@ -36,18 +40,14 @@ class App extends Component {
 
         <SwitchTransition mode="out-in">
           <CSSTransition
-            key={isOn ? "on" : "off"}
+            key={this.state.isOn ? "on" : "off"}
             timeout={1000}
             classNames='fade'
           >
             <div>
-              {isOn 
-                ? (<TvShows />) 
-                : (<Restaurants addRestaurants={this.addRestaurants} />)}
-              <button onClick={() => this.setState({ isOn: !isOn })}>
-                {isOn ? "Restaurants" : "Tv Shows"}
-              </button>
-
+              {this.state.isOn 
+                ? (<TvShows changeInputScreen={this.changeInputScreen} />) 
+                : (<Restaurants addRestaurants={this.addRestaurants} changeInputScreen={this.changeInputScreen} />)}
             </div>
           </CSSTransition>
         </SwitchTransition>

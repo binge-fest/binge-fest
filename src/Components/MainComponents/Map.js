@@ -156,7 +156,10 @@ const Map = ({ addRestaurants, showRestaurants }) => {
           </InfoWindow>
         ) : null}
       </GoogleMap>
+
       <button className="getRestaurantsButton buttons" onClick={callYelp}>Get Restaurants</button>
+
+  
     </div>
   );
 };

@@ -36,7 +36,7 @@ const options = {
   zoomControl: true,
 };
 
-const Map = ({ addRestaurants }) => {
+const Map = ({ addRestaurants, showRestaurants }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBfwMS0eamgOLogYGDPaNVMk7ZivEWhWlA",
     libraries,
@@ -61,9 +61,9 @@ const Map = ({ addRestaurants }) => {
     mapRef.current = map;
   }, []);
 
-  const panTo = useCallback(({ lat, lng }) => {
+  const panTo = useCallback((lat, lng, zoom) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(zoom);
   }, []);
 
   if (loadError) return "Error";
@@ -71,6 +71,8 @@ const Map = ({ addRestaurants }) => {
 
   const callYelp = () => {
     console.log(marker);
+
+    panTo(marker.lat, marker.lng, 14)
     if (marker) {
       const apiKey =
         "_ySZyzuihg1O-lyVqCt2-yZN4fuew1KxFLk_27F9XwOYREu5e5Q_mzxfbqBOsAWioxGNmcPeZfUsspraBGysxtP66PZ7KRsC62o6oElSq4iWivyUP4zpB4IizQnLX3Yx";
@@ -90,6 +92,7 @@ const Map = ({ addRestaurants }) => {
       }).then((res) => {
         console.log(res);
         addRestaurants(res.data.businesses);
+        showRestaurants(res.data.businesses);
         setYelpMarkers(res.data.businesses);
       });
     }
@@ -97,7 +100,7 @@ const Map = ({ addRestaurants }) => {
 
   return (
     <div className="mapContainer">
-      <h2 class="mapTitle">Binge Fest</h2>
+      <h2 class="mapTitle">BF</h2>
       <Search panTo={panTo} setMarker={setMarker} />
 
       <GoogleMap
@@ -188,7 +191,7 @@ const Search = ({ panTo, setMarker }) => {
           try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            panTo({ lat, lng });
+            panTo(lat, lng , 12);
             setMarker({
               lat: lat,
               lng: lng,

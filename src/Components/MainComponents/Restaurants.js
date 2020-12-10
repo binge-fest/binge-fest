@@ -2,30 +2,55 @@ import { Component } from 'react';
 import Map from './Map.js';
 
 class Restaurants extends Component {
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(this.state);
-  // }
+  constructor() {
+    super();
+    this.state = {
+      restaurantArr: []
+    }
+  }
 
-  // handleChange = (e) => {
-  //   const target = e.target;
-
-  //   this.setState({
-  //     [target.name]: target.value
-  //   });
-  // }
+  showRestaurants = restaurantArr => {
+    this.setState({
+      restaurantArr: restaurantArr
+    })
+  }
 
   render() {
     return (
       <div className="restaurants">
-        <Map addRestaurants={this.props.addRestaurants} />
-        {/* <form onSubmit={this.handleSubmit}>
-          <label htmlFor="mapInput"></label>
-          <input id="mapInput" type="text" onChange={this.handleChange} />
-          
-          <button value="submit">Submit</button>
-          <button value="submit">Randomizer</button>
-        </form> */}
+        <h2>Find restaurants near you</h2>
+        <div className="restaurantWrapper">
+          <div className="restaurantResults">
+            <h3>Restaurants: </h3>
+            {this.state.restaurantArr !== [] && (
+              this.state.restaurantArr.map(item => {
+                return (
+                  <div className="restaurant" key={item.id}>
+                    <img src={item.image_url} alt=""/>
+                    <div className="restaurantText">
+                      <h4>{item.name}</h4>
+                      <p>{item.categories.map((category, index) => {
+                        if (index === 0) {
+                          return category.title
+                        } else {
+                          return ", " + category.title
+                        }
+                      })}</p>
+                    </div>
+                  </div>
+                )
+              })
+            )}
+          </div>
+          <Map addRestaurants={this.props.addRestaurants} showRestaurants={this.showRestaurants} className="mapComponent" />
+          {/* <form onSubmit={this.handleSubmit}>
+            <label htmlFor="mapInput"></label>
+            <input id="mapInput" type="text" onChange={this.handleChange} />
+            
+            <button value="submit">Submit</button>
+            <button value="submit">Randomizer</button>
+          </form> */}
+        </div>
       </div>
     )
   }

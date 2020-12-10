@@ -9,7 +9,7 @@ class Header extends Component {
         <div className="wrapper">
           <h1>BINGE FEST</h1>
           <p>Feeling indecisive? Let us help you find a tv show to binge and a restaurant to order from!</p>
-          <Link smooth={true} to="tvShows" className="headerLink">Enter</Link>
+          <Link smooth={true} to="tvShows" className="buttons">Enter</Link>
         </div>
       </header>
     )

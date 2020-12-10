@@ -64,33 +64,6 @@ header {
   min-height: 100vh;
 }
 
-.headerLink {
-  padding: 15px 80px;
-
-  cursor: pointer;
-  font-size: 1.4rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 4px;
-
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow: hidden;
-  background: #ebe3ca;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-}
-
 /* .headerLink:focus,
 .headerLink:hover {
   background-color: #ebe3ca;
@@ -130,36 +103,55 @@ header {
   -webkit-transform: scale(2);
   transform: scale(2);
 } */
-@-webkit-keyframes headerLink {
+@-webkit-keyframes buttons {
   50% {
     background-color: rgba(244, 110, 0, 0.75);
   }
 }
 
-@keyframes headerLink {
+@keyframes buttons {
   50% {
     background-color: rgba(244, 110, 0, 0.75);
   }
 }
 
-.headerLink {
+.buttons {
+  padding: 15px 80px;
+
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0); */
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
   overflow: hidden;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
+  background: #ebe3ca;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+
+  border: none;
+}
+
+.buttons {
   -webkit-transition-property: color, #f46e00;
   transition-property: color, #f46e00;
 }
-.headerLink:hover, .headerLink:focus, .headerLink:active {
-  -webkit-animation-name: headerLink;
-  animation-name: headerLink;
+
+.buttons:hover, .buttons:focus {
+  -webkit-animation-name: buttons;
+  animation-name: buttons;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-delay: 0.5s;
@@ -169,10 +161,18 @@ header {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   background-color: #f46e00;
-  background-color: #f46e00;
   color: white;
 }
 
+.buttons:active {
+  background-color: #f46e00;
+}
+
+#red {
+  background-color: #700014;
+  color: #ebe3ca;
+  margin: 5px;
+}
 
 
 /* TV Component Styles */
@@ -220,7 +220,7 @@ fieldset {
   grid-template-columns: 1fr 1fr 1fr;
   border: 2px solid #700014;
   margin-bottom: 25px;
-  
+  border-radius: 4px;
 }
 
 
@@ -241,7 +241,7 @@ input[type=radio] {
 
 }
 
-.tvShows button {
+/* .tvShows button {
   background-color: #700014;
   color: #ebe3ca;
   padding: 15px;
@@ -249,8 +249,6 @@ input[type=radio] {
   font-size: 1rem;
   border: 2px solid black;
   font-family: 'Montserrat', sans-serif;
-
-  
 }
 
 .tvShows button:hover,
@@ -267,7 +265,7 @@ input[type=radio] {
 .showSelections button:hover,
 .showSelections button:focus {
   background-color: unset;
-}
+} */
 
 .tvShows label { 
   cursor: pointer;
@@ -279,7 +277,8 @@ input[type=radio] {
 .tvShows label:hover,
 .tvShows label:focus {
   background-color: #f46e00;
-
+  border-radius: 4px;
+  font-weight: bold; 
 }
 
 .showSelections {

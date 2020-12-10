@@ -43,6 +43,7 @@ class Restaurants extends Component {
             )}
           </div>
           <Map addRestaurants={this.props.addRestaurants} showRestaurants={this.showRestaurants} className="mapComponent" />
+          <button onClick={this.props.changeInputScreen}>Go to Tv Shows</button>
           {/* <form onSubmit={this.handleSubmit}>
             <label htmlFor="mapInput"></label>
             <input id="mapInput" type="text" onChange={this.handleChange} />

@@ -10,6 +10,7 @@ class TvShows extends Component {
       tvResult: null,
       tvSearch: '',
       isOn: true,  
+      onFavourites: []
     }
   }
 
@@ -35,25 +36,7 @@ class TvShows extends Component {
       this.setState({
         tvResult: res.data.results
       })
-      
     })
-    //   console.log(res);
-    //   // this.setState({
-    //   //   tvResult: {
-    //   //     name: res.data.name,
-    //   //     rating: res.data.rating.average
-    //   //   }
-    //   // })
-
-    //   // console.log(this.state.tvResult);
-    //   // const dbRef = firebase.database().ref('/tvShows');
-    //   // dbRef.push(this.state.tvResult);
-
-    //   // dbRef.on('value', (snapshot) => {
-    //   //   const dataObject = snapshot.val();
-    //   //   console.log(dataObject);
-    //   // })
-    // })  
   }
 
   handleChange = (e) => {
@@ -81,8 +64,6 @@ class TvShows extends Component {
         console.log('not in');
       }
     })
-    
-    
   }
 
   render() {
@@ -137,6 +118,7 @@ class TvShows extends Component {
                 
                 <button value="getShows" className="showMeShows">Show Me The Shows!</button>
                 <button value="submit" className="showRandomizer"><i className="fas fa-random" title="Click for random option"></i></button>
+                <button onClick={this.props.changeInputScreen}>Go to Restaurants</button>
               </form>
             </div>
             <div id="showResults" className="showSelections">
@@ -144,8 +126,8 @@ class TvShows extends Component {
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
                     <li>
+                      <i class="fas fa-bookmark" title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
                       <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
-                      <button><i class="fas fa-bookmark" title="Add to favourites" onClick={() => this.addToDatabase(show)}></i></button>
                     </li>
                   )
                 })}

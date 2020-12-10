@@ -2,9 +2,29 @@ import {Component, Fragment} from "react";
 import firebase from '../../firebase.js';
 
 class Results extends Component {
+  constructor() {
+    super();
+    this.state = {
+      tvShow: null
+    }
+  }
+
   componentDidMount(){
     const dbRefTvShows = firebase.database().ref('/tvShows');
-    dbRefTvShows.push(this.props.tvResult);
+    dbRefTvShows.once('value', snapshot => {
+      const data = snapshot.val();
+      // console.log(data.list);
+      const random = Math.floor(Math.random() * data.list);
+      let i = 0;
+      for (let key in data) {
+        if (i === random) {
+          this.setState({
+            tvShow: data[key]
+          })
+        }
+        i++;
+      }
+    })
   }
 
   render () {
@@ -20,16 +40,15 @@ class Results extends Component {
               <h2>Your Show</h2>
 
               <div className="showResultsContainer">
-
-                <div className="showImg">
-                  <img src="http://www.fillmurray.com/g/200/300" alt="" />
-                </div>
-                <div className="showDetails">
-                  <h3>The Big Bang Theory</h3>
-                  <h4>Rating</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex placeat laboriosam error ducimus, magni repudiandae delectus non animi et laudantium ipsum assumenda soluta dolore amet ipsam quos sint vero! Dignissimos.</p>
-                </div>
-
+                {this.state.tvShow && (
+                  <div className="showDetails">
+                    <div className="showImg">
+                      <img src={`https://image.tmdb.org/t/p/original` + this.state.tvShow.poster_path} alt="" />
+                    </div>
+                    <h3>{this.state.tvShow.name}</h3>
+                    <p>{this.state.tvShow.overview}</p>
+                  </div>
+                )}
               </div>
 
             </div>
@@ -44,7 +63,7 @@ class Results extends Component {
               <h4>Phone: {display_phone}</h4>
               <h4>Distance from user: {Math.round(distance / 100) / 10}</h4>
 
-              <img src={image_url} alt="" className="foodImage" />
+              {/* <img src={image_url} alt="" className="foodImage" /> */}
 
             </div>
           </div>

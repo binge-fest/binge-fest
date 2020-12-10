@@ -99,18 +99,13 @@ header {
   position: relative;
   overflow: hidden;
   background: #ebe3ca;
-  -webkit-transition-property: color;
-  transition-property: color;
+  -webkit-transition-property: color, #f46e00;
+  transition-property: color, #f46e00;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-
   border: none;
 }
 
-.buttons {
-  -webkit-transition-property: color, #f46e00;
-  transition-property: color, #f46e00;
-}
 
 .buttons:hover, .buttons:focus {
   -webkit-animation-name: buttons;
@@ -149,7 +144,7 @@ header {
   font-size: 3rem;
   text-transform: uppercase;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 40px;
 }
 
 /* .showContainer {
@@ -263,8 +258,8 @@ input[type=radio] {
 }
 .restaurants .changeScreen {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 40px;
+  left: 40px;
   height: 64px;
   width: 64px;
   border-radius: 50%;
@@ -301,7 +296,8 @@ input[type=radio] {
   width: 40%;
   font-size: 1.5rem;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 65vh;
+  margin-top: 40px;
 }
 
 .restaurantResults .restaurant {
@@ -331,6 +327,8 @@ input[type=radio] {
   max-height: 800px;
   width: 47.5vw;
   margin-bottom: 200px;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .mapContainer .mapTitle {
@@ -351,6 +349,10 @@ input[type=radio] {
   transform: translateX(-50%);
   z-index: 10;
   font-size: 1.4rem;
+}
+
+.mapContainer .buttons {
+  margin-top: 100px;
 }
 
 /* this is styling for the drop down list when searching locations, the class provided is from the react */

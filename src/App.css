@@ -239,6 +239,9 @@ input[type=radio] {
 .tvShows {
   text-align: center;
 }
+.showSelections .true {
+  color: #f46e00; 
+}
 
 /* .tvShows button {
   background-color: #700014;
@@ -294,7 +297,10 @@ input[type=radio] {
 
 .showSelections li {
   position: relative;
-
+}
+.showSelections ul {
+  margin-bottom: 0;
+  padding-bottom: 25px;
 }
 
 .tvImage {
@@ -303,7 +309,7 @@ input[type=radio] {
 }
 .fa-bookmark {
   color: #700014;
-  text-shadow: 0 0 5px white;
+  text-shadow: 0 0 5px black;
   font-size: 2rem;
   position: absolute;
   bottom: 23px;

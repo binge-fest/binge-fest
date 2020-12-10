@@ -238,7 +238,6 @@ input[type=radio] {
 
 .tvShows {
   text-align: center;
-
 }
 
 .tvShows button {
@@ -389,6 +388,7 @@ input[type=radio] {
 .results {
   background-color: #700014;
   color: #ebe3ca;
+  min-height: 100vh;
 }
 
 .results h2 {
@@ -405,6 +405,10 @@ input[type=radio] {
   padding-bottom: 50px;
 }
 
+.showResults {
+  width: 50%;
+}
+
 .showResults h2,
 .foodResults h2 {
   font-family: 'Kanit', sans-serif;
@@ -419,8 +423,13 @@ input[type=radio] {
 
 .showImg {
   margin-right: 50px;
-
 }
+
+.showImg img {
+  border: 3px solid #ebe3ca;
+}
+
+
 
 .results h3 {
   font-size: 1.5rem;
@@ -450,6 +459,12 @@ input[type=radio] {
   float: left; /* lolol */
   margin-right: 20px;
 } 
+
+.chooseAnotherDiv {
+  text-align: right;
+}
+
+
 
 /* Footer Styles */
 

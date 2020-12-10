@@ -87,7 +87,7 @@ header {
   background-color: #ebe3ca;
 }
 
-.tvShows h2 {
+.tvShows, .restaurants h2 {
   font-family: 'Kanit', sans-serif;
   margin-top: 0;
   font-size: 3rem;
@@ -174,10 +174,23 @@ input[type="text"]:hover {
   font-family: 'Montserrat', sans-serif
 }
 
+
+
+.restaurants .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.restaurantResults {
+  width: 40%;
+}
+
+.mapComponent {
+  width: 10%;
+}
 .mapContainer {
   position: relative;
   height: 80vh;
-  width: 80vw;
+  width: 55vw;
   margin-bottom: 200px;
 }
 .mapContainer .mapTitle {
@@ -206,7 +219,6 @@ input[type="text"]:hover {
 }
 
 /* Results Styles */
-
 .results {
   background-color: #700014;
   color: #ebe3ca;

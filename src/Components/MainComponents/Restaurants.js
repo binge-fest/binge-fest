@@ -18,14 +18,20 @@ class Restaurants extends Component {
   render() {
     return (
       <div className="restaurants">
-        <Map addRestaurants={this.props.addRestaurants} />
-        {/* <form onSubmit={this.handleSubmit}>
-          <label htmlFor="mapInput"></label>
-          <input id="mapInput" type="text" onChange={this.handleChange} />
-          
-          <button value="submit">Submit</button>
-          <button value="submit">Randomizer</button>
-        </form> */}
+        <h2>Find restaurants near you</h2>
+        <div className="wrapper">
+          <div className="restaurantResults">
+            <p>test</p>
+          </div>
+          <Map addRestaurants={this.props.addRestaurants} className="mapComponent" />
+          {/* <form onSubmit={this.handleSubmit}>
+            <label htmlFor="mapInput"></label>
+            <input id="mapInput" type="text" onChange={this.handleChange} />
+            
+            <button value="submit">Submit</button>
+            <button value="submit">Randomizer</button>
+          </form> */}
+        </div>
       </div>
     )
   }

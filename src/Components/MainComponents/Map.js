@@ -157,9 +157,8 @@ const Map = ({ addRestaurants, showRestaurants }) => {
         ) : null}
       </GoogleMap>
 
-      <button className="getRestaurantsButton buttons" onClick={callYelp}>Get Restaurants</button>
+      <button className="buttons dark" onClick={callYelp}>Get Restaurants</button>
 
-  
     </div>
   );
 };

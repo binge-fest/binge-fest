@@ -31,7 +31,7 @@ class Results extends Component {
     const { name, rating, review_count, price, categories, display_phone, distance, image_url } = this.props.restaurant;
 
     return (
-      <section className="results">
+      <section id="results" className="results">
         <div className="wrapper">
           <h2>RESULTS</h2>
           <div className="allResults">
@@ -68,7 +68,7 @@ class Results extends Component {
             </div>
           </div>
           <div className="chooseAnotherDiv">
-              <button className="chooseAnother">FIND ANOTHER SELECTION</button>
+              <button className="buttons">try again?</button>
           </div>
         </div>
       </section>

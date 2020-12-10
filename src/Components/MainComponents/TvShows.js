@@ -10,15 +10,41 @@ class TvShows extends Component {
       tvResult: null,
       tvSearch: '',
       isOn: true,  
-      onFavourites: []
+      onFavourites: [],
+      numberOfShows: null,
+      showListObject: {}
     }
+  }
+
+  componentDidMount() {
+    const numberOfShowsRef = firebase.database().ref('/tvShows/numberOfShows');
+    const showListRef = firebase.database().ref('tvShows');
+    numberOfShowsRef.once('value', snapshot => {
+      const data = snapshot.val();
+      // console.log('number of shows: ', data);
+      this.setState({
+        numberOfShows: data
+      })
+    }) 
+    showListRef.once('value', snapshot => {
+      const data = snapshot.val();
+      // console.log('shows object: ', data);
+      const showListObj = {}
+      for (let showName in data) {
+        showListObj[showName] = showName
+      }
+      console.log(showListObj);
+      this.setState({
+        showListObject: showListObj
+      })
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const apiKey = "262b2d458b0315ed4049499ffec1d210";
     
-    console.log(this.state);
+    // console.log(this.state);
     axios({
       url: 'https://api.themoviedb.org/3/discover/tv',
       method: 'GET',
@@ -32,9 +58,24 @@ class TvShows extends Component {
         // page: pages
       }
     }).then(res => {
-      console.log(res);
+      // console.log(res);
+      // const test = 'Supernaturall';
+      // console.log('test', this.state.showListObject[`${test}`]);
+      const results = res.data.results.map(show => {
+        // console.log('show name: ', show.name);
+        // console.log('state name: ',this.state.showListObject[`${show.name}`])
+        if (show.name === this.state.showListObject[`${show.name}`]) {
+          show.isSaved = true;
+          console.log('name: ', show.name, 'state name: ', this.state.showListObject[show.name]);
+          return show;
+        } else {
+          show.isSaved = false;
+          return show;
+        }
+      })
+      console.log(results);
       this.setState({
-        tvResult: res.data.results
+        tvResult: results
       })
     })
   }
@@ -50,17 +91,27 @@ class TvShows extends Component {
   addToDatabase = (show) => {
     console.log(show);
     let isIn = false;
-    const tvShowRef = firebase.database().ref('/tvShows');
+    const tvShowRef = firebase.database().ref(`/tvShows/${show.name}`);
+    const tvShowListRef = firebase.database().ref('/tvShows');
     tvShowRef.once('value', snapshot => {
       // console.log(snapshot.val());
-      const data = snapshot.val();
-      for (let tvShowId in data) {
-        if (data[tvShowId].name === show.name) {
-          isIn = true;
-        }  
-      }
-      if (!isIn) {
-        tvShowRef.push(show);
+      const dataObj = snapshot.val();
+      // for (let tvShowName in dataObj) {
+      //   if (tvShowName === show.name) {
+      //     isIn = true;
+      //   }  
+      // }
+      if (!dataObj) {
+        show.isSaved = true;
+        tvShowRef.update({
+          [show.name]: show
+        });
+        tvShowListRef.update({
+          numberOfShows: this.state.numberOfShows + 1
+        })
+        this.setState({
+          numberOfShows: this.state.numberOfShows + 1
+        })
         console.log('not in');
       }
     })
@@ -73,6 +124,7 @@ class TvShows extends Component {
         <div className="wrapper">
           <h2>Search for a TV Show</h2>
           <div className="showContainer">
+            <p>Number of stored tv shows: {this.state.numberOfShows}</p>
             <div className="showSearch">
               <form onSubmit={this.handleSubmit}>
                 {/* <label htmlFor="tvSearch">Search for Show:</label>
@@ -90,7 +142,7 @@ class TvShows extends Component {
                       onChange={this.handleChange}
                     />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="scienceFiction">Science-Fiction
+                  <label className="genreCategoryOption" htmlFor="scienceFiction">Sci-Fi and Fantasy
                     <input type="radio" name="categoryMeal" value="10765" id="scienceFiction" onChange={this.handleChange}/>
                   </label>
                   <label className="genreCategoryOption" htmlFor="drama">Drama
@@ -116,9 +168,9 @@ class TvShows extends Component {
                   </label>
                 </fieldset>
                 
-                <button value="getShows" className="buttons" id="red">Search</button>
-                <button value="submit" className="buttons" id="red"><i className="fas fa-random" title="Click for random option"></i></button>
-                <button className="buttons" id="red" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
+                <button value="getShows" className="buttons dark">Search</button>
+                <button value="submit" className="buttons dark"><i className="fas fa-random" title="Click for random option"></i></button>
+                <button className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
               </form>
             </div>
             <div id="showResults" className="showSelections">
@@ -126,7 +178,7 @@ class TvShows extends Component {
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
                     <li>
-                      <i class="fas fa-bookmark" title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
+                      <i class={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
                       <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
                     </li>
                   )

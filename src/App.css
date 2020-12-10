@@ -129,7 +129,7 @@ header {
   background-color: #f46e00;
 }
 
-#red {
+.dark {
   background-color: #700014;
   color: #ebe3ca;
   margin: 5px;
@@ -197,6 +197,9 @@ input[type=radio] {
 .tvShows {
   text-align: center;
 }
+.showSelections .true {
+  color: #f46e00; 
+}
 
 .tvShows label { 
   cursor: pointer;
@@ -225,6 +228,10 @@ input[type=radio] {
 .showSelections li {
   position: relative;
 }
+.showSelections ul {
+  margin-bottom: 0;
+  padding-bottom: 25px;
+}
 
 .tvImage {
   width: 200px;
@@ -233,7 +240,7 @@ input[type=radio] {
 
 .fa-bookmark {
   color: #700014;
-  text-shadow: 0 0 5px white;
+  text-shadow: 0 0 5px black;
   font-size: 2rem;
   position: absolute;
   bottom: 23px;

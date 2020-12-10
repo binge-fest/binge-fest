@@ -45,7 +45,7 @@ class App extends Component {
                 ? (<TvShows />) 
                 : (<Restaurants addRestaurants={this.addRestaurants} />)}
               <button onClick={() => this.setState({ isOn: !isOn })}>
-                {isOn ? "Tv Shows" : "Restaurants"}
+                {isOn ? "Restaurants" : "Tv Shows"}
               </button>
 
             </div>

@@ -100,64 +100,41 @@ class TvShows extends Component {
                 <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} /> */}
                 
                 <fieldset>
-                  <label className="genreCategoryOption" for="comedy">Comedy
+                  <label className="genreCategoryOption" htmlFor="animation">Animation
                     <input 
                       type="radio" 
                       name="categoryMeal" 
-                      value="35" 
-                      id="comedy" 
+                      value="16" 
+                      id="animation" 
                       onChange={this.handleChange}
                     />
                   </label>
-                  <label className="genreCategoryOption" for="scienceFiction">Science-Fiction
-                    <input type="radio" name="categoryMeal" value="10765" id="scienceFiction" />
+                  <label className="genreCategoryOption" htmlFor="scienceFiction">Science-Fiction
+                    <input type="radio" name="categoryMeal" value="10765" id="scienceFiction" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" for="Drama">Drama
-                    <input type="radio" name="categoryMeal" value="18" id="Drama" />
+                  <label className="genreCategoryOption" htmlFor="drama">Drama
+                    <input type="radio" name="categoryMeal" value="18" id="drama" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="35" id="Comedy" />
+                  <label className="genreCategoryOption" htmlFor="comedy">Comedy
+                    <input type="radio" name="categoryMeal" value="35" id="comedy" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="35" id="Comedy" />
+                  <label className="genreCategoryOption" htmlFor="crime">Crime
+                    <input type="radio" name="categoryMeal" value="80" id="crime" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="35" id="Comedy" />
+                  <label className="genreCategoryOption" htmlFor="documentary">Documentary
+                    <input type="radio" name="categoryMeal" value="99" id="documentary" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="35" id="Comedy" />
+                  <label className="genreCategoryOption" htmlFor="mystery">Mystery
+                    <input type="radio" name="categoryMeal" value="9648" id="mystery" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
+                  <label className="genreCategoryOption" htmlFor="reality">Reality
+                    <input type="radio" name="categoryMeal" value="10764" id="reality" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="Comedy" id="Comedy" />
-                  </label>
-                  <label className="genreCategoryOption" for="Comedy">Comedy
-                    <input 
-                      type="radio" 
-                      name="categoryMeal" 
-                      value="Comedy" 
-                      id="Comedy" 
-                    />
+                  <label className="genreCategoryOption" htmlFor="soap">Soap
+                    <input type="radio" name="categoryMeal" value="10766" id="soap" onChange={this.handleChange} />
                   </label>
                 </fieldset>
-
+                
                 <button value="getShows" className="showMeShows">Show Me The Shows!</button>
                 <button value="submit" className="showRandomizer"><i className="fas fa-random" title="Click for random option"></i></button>
               </form>
@@ -167,13 +144,13 @@ class TvShows extends Component {
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
                     <li>
-                      <h3>{show.name} <button href="#"><i class="fas fa-bookmark" title="Add to favourites" onClick={() => this.addToDatabase(show)}></i></button></h3>
                       <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
+                      <button><i class="fas fa-bookmark" title="Add to favourites" onClick={() => this.addToDatabase(show)}></i></button>
                     </li>
                   )
                 })}
               </ul>
-              <button value="showRestaurants" className="goToRestaurants">Go to restaurants!</button>
+              {/* <button value="showRestaurants" className="goToRestaurants">Go to restaurants!</button> */}
             </div>
           </div>
         </div>

@@ -56,9 +56,6 @@ header p {
   font-family: 'Montserrat', sans-serif;
 }
 
-.tvShows,
-.restaurants,
-.results,
 header {
   height: 100vh;
 }
@@ -96,15 +93,11 @@ header {
   padding-top: 10px;
 }
 
-.showContainer {
+/* .showContainer {
   display: flex;
   justify-content: center;
-}
+} */
 
-.showSearch {
-  border-right: 2px solid black;
-  padding-right: 20px;
-}
 
 label {
   font-size: 1.5rem;
@@ -119,24 +112,48 @@ input[type="text"] {
   font-size: 1rem;
 }
 
-input[type="text"]:focus,
+/* input[type="text"]:focus,
 input[type="text"]:hover {
   border: 1px solid #f46e00;
   background-color: white;
+} */
+
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 2px solid #700014;
+  margin-bottom: 25px;
+  
 }
 
 
+input[type=radio] {
+  margin-left: 10px;
+  opacity: 0;
+  position: fixed;
+  width: 0;
+    
+}
+
 .showSelections {
   padding-left: 20px;
+}
+
+.tvShows {
+  text-align: center;
+
 }
 
 .tvShows button {
   background-color: #700014;
   color: #ebe3ca;
   padding: 15px;
+  margin-bottom: 15px;
   font-size: 1rem;
   border: 2px solid black;
-  font-family: 'Montserrat', sans-serif
+  font-family: 'Montserrat', sans-serif;
+
+  
 }
 
 .tvShows button:hover,
@@ -144,12 +161,45 @@ input[type="text"]:hover {
   background-color: #f46e00;
 }
 
+.showSelections button {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+}
+
+.showSelections button:hover,
+.showSelections button:focus {
+  background-color: unset;
+}
+
 .tvShows label { 
   cursor: pointer;
   padding: 20px 10px;
   text-transform: uppercase;
-  text-align: center;
-  background-color: #700014;
+  text-align: center;  
+}
+
+.tvShows label:hover,
+.tvShows label:focus {
+  background-color: #f46e00;
+
+}
+
+.showSelections {
+  position: relative;
+
+}
+
+.showSelections ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.showSelections li {
+  position: relative;
+
 }
 
 .tvImage {
@@ -158,6 +208,11 @@ input[type="text"]:hover {
 
 .fa-bookmark {
   color: #700014;
+  text-shadow: 0 0 5px white;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 35px;
+  right: 40px;
 }
 
 .fa-bookmark:hover,
@@ -221,9 +276,8 @@ input[type="text"]:hover {
 
 .allResults {
   display: flex;
-  justify-content: center;
-  border: 2px solid #f46e00;
-  border-radius: 25px;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
 }
 
 .showResults h2,
@@ -231,9 +285,23 @@ input[type="text"]:hover {
   font-family: 'Kanit', sans-serif;
   font-size: 2.5rem;
   letter-spacing: 0.2rem;
+  text-align: center;
 }
 
-.results h3,
+.showResultsContainer {
+  display: flex;
+}
+
+.showImg {
+  margin-right: 50px;
+
+}
+
+.results h3 {
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .results h4,
 .results p {
   font-family: 'Montserrat', sans-serif;
@@ -250,6 +318,7 @@ input[type="text"]:hover {
 }
 .foodImage {
   width: 400px;
+  height: 50%;
 }
 
 /* Footer Styles */
@@ -271,10 +340,7 @@ footer a:focus {
   color: #f46e00;
 }
 
-fieldset {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
+
 
 
 

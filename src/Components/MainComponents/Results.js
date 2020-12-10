@@ -19,11 +19,18 @@ class Results extends Component {
             <div className="showResults">
               <h2>Your Show</h2>
 
-              <img src="http://www.fillmurray.com/g/200/300" alt="" />
-              <h3>Show Title</h3>
-              <h4>Rating</h4>
-              <p>Description</p>
+              <div className="showResultsContainer">
 
+                <div className="showImg">
+                  <img src="http://www.fillmurray.com/g/200/300" alt="" />
+                </div>
+                <div className="showDetails">
+                  <h3>The Big Bang Theory</h3>
+                  <h4>Rating</h4>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex placeat laboriosam error ducimus, magni repudiandae delectus non animi et laudantium ipsum assumenda soluta dolore amet ipsam quos sint vero! Dignissimos.</p>
+                </div>
+
+              </div>
 
             </div>
             <div className="foodResults">

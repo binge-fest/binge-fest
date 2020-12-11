@@ -1,3 +1,5 @@
+// https://www.youtube.com/watch?v=WZcxJGmLbSo
+// the above video was vital in creating this!! big credits to Leigh Halliday
 import { useState, useCallback, useRef } from "react";
 import axios from "axios";
 import {
@@ -18,10 +20,12 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-
+// highly recommend checking out https://snazzymaps.com/, this is where we styled our map
 import mapStyles from "../../mapStyles";
 
+// places are for autocompletion
 const libraries = ["places"];
+// bunch of different settings defined outside so that they never cause rerenders
 const mapContainerStyle = {
   height: "100%",
   width: "100%",
@@ -42,11 +46,12 @@ const Map = ({ showRestaurants, showResults }) => {
     libraries,
   });
 
+  // some basic state
   const [marker, setMarker] = useState(null);
   const [yelpMarkers, setYelpMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  // the below function is to prevent rerenders
+  // the below function is to prevent unnecessary rerenders
   const onMapClick = useCallback((event) => {
     setMarker({
       lat: event.latLng.lat(),
@@ -61,16 +66,18 @@ const Map = ({ showRestaurants, showResults }) => {
     mapRef.current = map;
   }, []);
 
+  // function to pan to a determined location with a certain amount of zoom
   const panTo = useCallback((lat, lng, zoom) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(zoom);
   }, []);
 
+  // if map has issues
   if (loadError) return "Error";
   if (!isLoaded) return "Loading map...";
 
+  // function to get data back from yelp and display on map & display results
   const callYelp = () => {
-    console.log(marker);
     if (!marker) {
       alert('Please select a location');
       return;
@@ -92,8 +99,7 @@ const Map = ({ showRestaurants, showResults }) => {
           latitude: marker.lat,
           longitude: marker.lng,
         },
-      }).then((res) => {
-        console.log(res);       
+      }).then((res) => {     
         showRestaurants(res.data.businesses);
         setYelpMarkers(res.data.businesses);
       });
@@ -101,6 +107,7 @@ const Map = ({ showRestaurants, showResults }) => {
   };
 
   return (
+    // showResults variable changes the position of the map so that it can fit the results on the side, it is a boolean passed from props
     <div className={`mapContainer ${showResults}`}>
       <h2 class="mapTitle">BF</h2>
 
@@ -116,6 +123,7 @@ const Map = ({ showRestaurants, showResults }) => {
         onLoad={onMapLoad}
       >
         {marker && <Marker position={{ lat: marker.lat, lng: marker.lng }} />}
+        {/* display markers once user selects location */}
         {yelpMarkers !== []
           ? yelpMarkers.map((business) => {
               console.log(
@@ -129,12 +137,14 @@ const Map = ({ showRestaurants, showResults }) => {
                     lat: business.coordinates.latitude,
                     lng: business.coordinates.longitude,
                   }}
+                  // icon has some weird stuff on it, just used to position it perfectly on the location
                   icon={{
                     url: "./restaurant.svg",
                     scaledSize: new window.google.maps.Size(30, 30),
                     origin: new window.google.maps.Point(0, 0),
                     anchor: new window.google.maps.Point(15, 15),
                   }}
+                  // selected state is the InfoWindow seen a couple lines below
                   onClick={() => {
                     setSelected(business);
                   }}
@@ -153,21 +163,20 @@ const Map = ({ showRestaurants, showResults }) => {
             }}
           >
             <div className="infoWindow">
-              <h2>{selected.name}</h2>
+              <h3>{selected.name}</h3>
               <p>{selected.phone}</p>
             </div>
           </InfoWindow>
         ) : null}
       </GoogleMap>
-
       <button className="buttons dark" onClick={callYelp}>Get Restaurants</button>
-
     </div>
   );
 };
 
 export default Map;
 
+// search functionality
 const Search = ({ panTo, setMarker }) => {
   const {
     ready,
@@ -187,6 +196,7 @@ const Search = ({ panTo, setMarker }) => {
 
   return (
     <div className="search">
+      {/* combobox that holds the user's input and the drop down for possible location matches */}
       <Combobox
         onSelect={async (address) => {
           // second argument is a function called shouldFetchData, we don't need it because we already know what the user has selected

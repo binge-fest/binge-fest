@@ -100,7 +100,7 @@ const Map = ({ addRestaurants, showRestaurants }) => {
 
   return (
     <div className="mapContainer">
-      <h2 class="mapTitle">BF</h2>
+      {/* <h2 class="mapTitle">BF</h2> */}
       <Search panTo={panTo} setMarker={setMarker} />
 
       <GoogleMap

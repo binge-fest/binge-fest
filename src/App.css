@@ -369,6 +369,7 @@ input[type=radio] {
 
 .showMeResultsDiv {
   padding-bottom: 15px;
+  text-align: center;
 }
 
 /* Map styles */
@@ -430,18 +431,12 @@ input[type=radio] {
 
 .showMeResultsDiv {
   text-align: right;
-  
 }
 
 .goToResults {
   background-color: #700014;
   color: #ebe3ca;
 }
-
-
-
-
-
 
 /* Results Styles */
 .results {
@@ -460,7 +455,6 @@ input[type=radio] {
 
 .allResults {
   display: flex;
-  justify-content: space-evenly;
   padding-bottom: 50px;
 }
 
@@ -505,7 +499,7 @@ input[type=radio] {
 }
 
 .foodResults {
-  padding-left: 20px;
+  padding-left: 100px;
 }
 .foodImage {
   width: 400px;
@@ -543,15 +537,66 @@ footer a:focus {
 /* Responsive Design */
 
 /* Portrait tablet and small desktops */
+@media (max-width: 1080px) {
+  .restaurants h2 {
+    padding-top: 120px;
+  }
+}
+
 @media (max-width: 940px) {
+  .restaurantWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mapContainer {
+    width: 100%;
+  }
+
+  .restaurantResults {
+    width: 80%;
+  }
+
+  .showMeResultsDiv {
+    margin-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+  }
+
+  .allResults {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }  
+
+  .showResults {
+    border: none;
+    border-bottom: 2px solid #ebe3ca;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .foodResults {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  
 }
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
+  
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+  .restaurantImage {
+    display: none;
+  }
+
 }
 
 

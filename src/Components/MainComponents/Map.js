@@ -71,7 +71,10 @@ const Map = ({ showRestaurants, showResults }) => {
 
   const callYelp = () => {
     console.log(marker);
-
+    if (!marker) {
+      alert('Please select a location');
+      return;
+    }
     panTo(marker.lat, marker.lng, 14)
     if (marker) {
       const apiKey =

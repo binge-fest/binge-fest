@@ -117,8 +117,32 @@ class TvShows extends Component {
     })
   }
 
-  render() {
+  removeFromDatabase = (show) => {
+    const tvShowRef = firebase.database().ref(`/tvShows/${show.name}`);
+    const tvShowListRef = firebase.database().ref('/tvShows');
+    
+    tvShowRef.update({
+      [show.name]: null
+    });
+    tvShowListRef.update({
+      numberOfShows: this.state.numberOfShows - 1
+    })
+    this.setState({
+      numberOfShows: this.state.numberOfShows - 1
+    })
 
+    const newArray = this.state.tvResult.map(stateShow => {
+      if (stateShow.name === show.name) {
+        stateShow.isSaved = false;
+      }
+      return stateShow;
+    })
+    this.setState({
+      tvResult: newArray
+    })
+  }
+
+  render() {
     return (
       <div id="tvShows" className="tvShows">
         <div className="wrapper">
@@ -126,45 +150,76 @@ class TvShows extends Component {
           <div className="showContainer">
             <p>Number of stored tv shows: {this.state.numberOfShows}</p>
             <div className="showSearch">
-              <form onSubmit={this.handleSubmit}>
-                {/* <label htmlFor="tvSearch">Search for Show:</label>
-                <input type="text" id="tvSearch" name="tvSearch" onChange={this.handleChange} /> */}
-                {/* <label htmlFor="tvGenre">Search for Genre:</label>
-                <input type="text" id="tvGenre" name="tvGenre" onChange={this.handleChange} /> */}
-                
+              <form onSubmit={this.handleSubmit}>             
                 <fieldset>
-                  <label className="genreCategoryOption" htmlFor="animation">Animation
+                  <label className={
+                      this.state.tvGenre === "16"  
+                        ? `genreCategoryOption activated`
+                        : `genreCategoryOption`
+                    } htmlFor="animation">Animation
                     <input 
                       type="radio" 
-                      name="categoryMeal" 
+                      name="categoryGenre" 
                       value="16" 
                       id="animation" 
                       onChange={this.handleChange}
                     />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="scienceFiction">Sci-Fi and Fantasy
-                    <input type="radio" name="categoryMeal" value="10765" id="scienceFiction" onChange={this.handleChange}/>
+                  <label className={
+                    this.state.tvGenre === "10765"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="scienceFiction">Sci-Fi and Fantasy
+                    <input type="radio" name="categoryGenre" value="10765" id="scienceFiction" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" htmlFor="drama">Drama
-                    <input type="radio" name="categoryMeal" value="18" id="drama" onChange={this.handleChange} />
+                  <label className={
+                    this.state.tvGenre === "18"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="drama">Drama
+                    <input type="radio" name="categoryGenre" value="18" id="drama" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="comedy">Comedy
-                    <input type="radio" name="categoryMeal" value="35" id="comedy" onChange={this.handleChange} />
+                  <label className={
+                    this.state.tvGenre === "35"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="comedy">Comedy
+                    <input type="radio" name="categoryGenre" value="35" id="comedy" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="crime">Crime
-                    <input type="radio" name="categoryMeal" value="80" id="crime" onChange={this.handleChange} />
+                  <label className={
+                    this.state.tvGenre === "80"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="crime">Crime
+                    <input type="radio" name="categoryGenre" value="80" id="crime" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="documentary">Documentary
-                    <input type="radio" name="categoryMeal" value="99" id="documentary" onChange={this.handleChange} />
+                  <label className={
+                    this.state.tvGenre === "99"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="documentary">Documentary
+                    <input type="radio" name="categoryGenre" value="99" id="documentary" onChange={this.handleChange} />
                   </label>
-                  <label className="genreCategoryOption" htmlFor="mystery">Mystery
-                    <input type="radio" name="categoryMeal" value="9648" id="mystery" onChange={this.handleChange}/>
+                  <label className={
+                    this.state.tvGenre === "9648"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="mystery">Mystery
+                    <input type="radio" name="categoryGenre" value="9648" id="mystery" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" htmlFor="reality">Reality
-                    <input type="radio" name="categoryMeal" value="10764" id="reality" onChange={this.handleChange}/>
+                  <label className={
+                    this.state.tvGenre === "10764"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="reality">Reality
+                    <input type="radio" name="categoryGenre" value="10764" id="reality" onChange={this.handleChange}/>
                   </label>
-                  <label className="genreCategoryOption" htmlFor="soap">Soap
-                    <input type="radio" name="categoryMeal" value="10766" id="soap" onChange={this.handleChange} />
+                  <label className={
+                    this.state.tvGenre === "10766"
+                      ? "genreCategoryOption activated"
+                      : "genreCategoryOption"
+                  } htmlFor="soap">Soap
+                    <input type="radio" name="categoryGenre" value="10766" id="soap" onChange={this.handleChange} />
                   </label>
                 </fieldset>
                 
@@ -178,7 +233,13 @@ class TvShows extends Component {
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
                     <li>
-                      <i className={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
+                      <i className={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => {
+                        if (show.isSaved) {
+                          this.removeFromDatabase(show);
+                        } else { // laura solved THIS ELSE STATEMENT
+                          this.addToDatabase(show);
+                        }
+                      }}></i>
                       <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
                     </li>
                   )

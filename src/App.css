@@ -318,6 +318,9 @@ input[type=radio] {
   margin: 0 auto;
 }
 
+.restaurantResultsContainer {
+  width: 50%;
+}
 .restaurantResults {
   font-size: 1.2rem;
   overflow-y: auto;

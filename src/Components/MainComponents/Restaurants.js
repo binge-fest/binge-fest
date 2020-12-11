@@ -43,14 +43,14 @@ class Restaurants extends Component {
     return (
       <div className="restaurants" >
         <div className="wrapper">
-          <a href="" class="changeScreen" onClick={(e) => this.goBack(e)}>
+          <a href="" className="changeScreen" onClick={(e) => this.goBack(e)}>
             <img src="./left-arrow.png" alt="Go back arrow" />
           </a>
           <h2>Find restaurants near you</h2>
           <div className="restaurantWrapper">
             <Map addRestaurants={this.props.addRestaurants} showRestaurants={this.showRestaurants} className={`mapComponent ${this.state.showResults}`} showResults={this.state.showResults} />
               {this.state.restaurantArr && (
-                <div>
+                <div className="restaurantResultsContainer">
                   <div className="restaurantResults">
                     {this.state.restaurantArr.map(item => {
                       return (
@@ -61,7 +61,7 @@ class Restaurants extends Component {
                           ></div>
                           <div className="restaurantText">
                             <div className="removeRestaurant">
-                              <i class="fas fa-times" title="Remove from list" onClick={() => this.removeRestaurantItem(item.id)}></i>
+                              <i className="fas fa-times" title="Remove from list" onClick={() => this.removeRestaurantItem(item.id)}></i>
                             </div>
                             <h4>{item.name}</h4>
                             <p>{item.categories.map((category, index) => {

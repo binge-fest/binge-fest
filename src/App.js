@@ -16,12 +16,13 @@ class App extends Component {
     }
   }
 
+  // used to toggle between the TvShows component and the Restaurants component 
   changeInputScreen = () => {
     this.setState({ isOn: !this.state.isOn })
   }
 
+  // this is passed down into the Restaurants component and then into the Map component. once the state has been changed then the results section will be rendered using this data
   addRestaurantsToState = restaurantList => {
-    console.log(restaurantList);
     this.setState({
       restaurantList: restaurantList,
     })

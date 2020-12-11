@@ -11,9 +11,8 @@ class Results extends Component {
     }
   }
 
+  // this is essentially for when this results component is already displayed but the user goes back and favourites a restaurant. we needed a way for it to rerender this component with the new favourite restaurant and this was our solution
   componentDidUpdate(prevProps) {
-    // console.log('prev props: ', prevProps);
-    // console.log('current props: ', this.props);
     if (prevProps !== this.props) {
       if (this.props.restaurantList) {
         this.setState({
@@ -24,6 +23,7 @@ class Results extends Component {
     }
   }
 
+  // always starts off with a random show and if it's passed a restaurant array it will get a random one as well
   componentDidMount() {
     this.getRandomShow();
     if (this.props.restaurantList) {
@@ -34,6 +34,7 @@ class Results extends Component {
     }
   }
 
+  // gets a new random show. there is a [key][key] because the data is nested one deep
   getRandomShow = () => {
     const dbRefTvShows = firebase.database().ref('/tvShows');
     dbRefTvShows.once('value', snapshot => {
@@ -42,7 +43,6 @@ class Results extends Component {
       let i = 0;
       for (let key in data) {
         if (i === random) {
-          // console.log(data[key][key]);
           this.setState({
             tvShow: data[key][key]
           })
@@ -52,6 +52,7 @@ class Results extends Component {
     })
   }
 
+  // gets a new randomRestaurant. it will prioritize the list that is given to the function but if it doesn't get a list then it will just use the state.
   getRandomRestaurant = restaurantList => {
     let localRestaurantList = [];
     if (restaurantList) {
@@ -73,7 +74,6 @@ class Results extends Component {
   }
 
   render () {
-    console.log(this.state.tvShow );
     return (
       <section id="results" className="results">
         <div className="wrapper">

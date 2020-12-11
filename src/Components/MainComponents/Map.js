@@ -109,7 +109,7 @@ const Map = ({ showRestaurants, showResults }) => {
   return (
     // showResults variable changes the position of the map so that it can fit the results on the side, it is a boolean passed from props
     <div className={`mapContainer ${showResults}`}>
-      <h2 class="mapTitle">BF</h2>
+      <h2 className="mapTitle">BF</h2>
 
       <Search panTo={panTo} setMarker={setMarker} />
 
@@ -126,10 +126,6 @@ const Map = ({ showRestaurants, showResults }) => {
         {/* display markers once user selects location */}
         {yelpMarkers !== []
           ? yelpMarkers.map((business) => {
-              console.log(
-                business.coordinates.latitude,
-                business.coordinates.longitude
-              );
               return (
                 <Marker
                   key={business.id}
@@ -214,8 +210,6 @@ const Search = ({ panTo, setMarker }) => {
           } catch (error) {
             console.log("error!", error);
           }
-
-          console.log(address);
         }}
       >
         <ComboboxInput

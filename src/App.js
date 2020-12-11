@@ -12,23 +12,19 @@ class App extends Component {
     super();
     this.state = {
       isOn: true,
-      restaurant: null,
+      restaurantList: null,
     }
-  }
-
-  addRestaurants = (restaurantList) => {
-    console.log(restaurantList);
-    const length = restaurantList.length;
-    const random = Math.floor(Math.random() * length);
-    console.log(Math.floor(Math.random() * length));
-  
-    this.setState({
-      restaurant: restaurantList[random]
-    })
   }
 
   changeInputScreen = () => {
     this.setState({ isOn: !this.state.isOn })
+  }
+
+  addRestaurantsToState = restaurantList => {
+    console.log(restaurantList);
+    this.setState({
+      restaurantList: restaurantList,
+    })
   }
 
   render() {
@@ -47,13 +43,13 @@ class App extends Component {
             <div>
               {this.state.isOn 
                 ? (<TvShows changeInputScreen={this.changeInputScreen} />) 
-                : (<Restaurants addRestaurants={this.addRestaurants} changeInputScreen={this.changeInputScreen} />)}
+                : (<Restaurants addRestaurants={this.addRestaurantsToState} changeInputScreen={this.changeInputScreen} />)}
             </div>
           </CSSTransition>
         </SwitchTransition>
 
-        {this.state.restaurant
-          ? <Results restaurant={this.state.restaurant} />
+        {this.state.restaurantList
+          ? <Results restaurantList={this.state.restaurantList} />
           : null
         }
         <Footer />

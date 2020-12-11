@@ -292,6 +292,11 @@ input[type=radio] {
   width: 100%;
 }
 
+.restaurantWrapper .false {
+  /* margin-left: 200px; */
+  width: 90vw;
+} 
+
 .restaurants .restaurantWrapper {
   display: flex;
   justify-content: space-between;
@@ -304,8 +309,10 @@ input[type=radio] {
   width: 40%;
   font-size: 1.2rem;
   overflow-y: auto;
-  max-height: 65vh;
+  max-height: 80vh;
   margin-top: 40px;
+  margin-left: 25px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .restaurantResults .restaurant {
@@ -370,6 +377,9 @@ input[type=radio] {
 .showMeResultsDiv {
   padding-bottom: 15px;
   text-align: center;
+}
+.restaurants .favourited {
+  color: #f46e00;
 }
 
 /* Map styles */
@@ -513,6 +523,11 @@ input[type=radio] {
 
 .chooseAnotherDiv {
   text-align: center;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
 }
 
 /* Footer Styles */

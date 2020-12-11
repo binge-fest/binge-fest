@@ -36,7 +36,7 @@ const options = {
   zoomControl: true,
 };
 
-const Map = ({ addRestaurants, showRestaurants }) => {
+const Map = ({ showRestaurants, showResults }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBfwMS0eamgOLogYGDPaNVMk7ZivEWhWlA",
     libraries,
@@ -90,8 +90,7 @@ const Map = ({ addRestaurants, showRestaurants }) => {
           longitude: marker.lng,
         },
       }).then((res) => {
-        console.log(res);
-        addRestaurants(res.data.businesses);
+        console.log(res);       
         showRestaurants(res.data.businesses);
         setYelpMarkers(res.data.businesses);
       });
@@ -99,8 +98,9 @@ const Map = ({ addRestaurants, showRestaurants }) => {
   };
 
   return (
-    <div className="mapContainer">
-      {/* <h2 class="mapTitle">BF</h2> */}
+    <div className={`mapContainer ${showResults}`}>
+      <h2 class="mapTitle">BF</h2>
+
       <Search panTo={panTo} setMarker={setMarker} />
 
       <GoogleMap

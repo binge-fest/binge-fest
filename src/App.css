@@ -438,14 +438,11 @@ input[type=radio] {
   text-align: right;
 }
 
-<<<<<<< HEAD
-=======
 .goToResults {
   background-color: #700014;
   color: #ebe3ca;
 }
 
->>>>>>> 7e84cfd2f7cf21f209b597477a90151ad8618e03
 /* Results Styles */
 .results {
   background-color: #700014;
@@ -456,6 +453,8 @@ input[type=radio] {
 .results h2 {
   text-align: center;
   font-family: 'Kanit', sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 3rem;
   padding-top: 10px;
   margin-top: 0;

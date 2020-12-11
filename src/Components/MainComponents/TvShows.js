@@ -8,78 +8,35 @@ class TvShows extends Component {
     this.state = {
       tvGenre: null,
       tvResult: null,
-      tvSearch: '',
-      isOn: true,  
-      onFavourites: [],
       numberOfShows: null,
       showListObject: {}
     }
   }
 
   componentDidMount() {
+    // connect to databases and initially set state for some important info
     const numberOfShowsRef = firebase.database().ref('/tvShows/numberOfShows');
     const showListRef = firebase.database().ref('tvShows');
     numberOfShowsRef.once('value', snapshot => {
       const data = snapshot.val();
-      // console.log('number of shows: ', data);
       this.setState({
         numberOfShows: data
       })
     }) 
+    // we use the showListObject on state for when we are adding to database. it helps us index immediately and check to see if the value is already in database or not (faster than iterating over the whole thing)
     showListRef.once('value', snapshot => {
       const data = snapshot.val();
-      // console.log('shows object: ', data);
       const showListObj = {}
       for (let showName in data) {
         showListObj[showName] = showName
       }
-      console.log(showListObj);
       this.setState({
         showListObject: showListObj
       })
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const apiKey = "262b2d458b0315ed4049499ffec1d210";
-    
-    // console.log(this.state);
-    axios({
-      url: 'https://api.themoviedb.org/3/discover/tv',
-      method: 'GET',
-      responseType: 'json',
-      params: {
-        api_key: apiKey,
-        language: `en-US`,
-        with_genres: this.state.tvGenre,
-        page: 1
-        // sort_by: `popularity.desc`,
-        // page: pages
-      }
-    }).then(res => {
-      // console.log(res);
-      // const test = 'Supernaturall';
-      // console.log('test', this.state.showListObject[`${test}`]);
-      const results = res.data.results.map(show => {
-        // console.log('show name: ', show.name);
-        // console.log('state name: ',this.state.showListObject[`${show.name}`])
-        if (show.name === this.state.showListObject[`${show.name}`]) {
-          show.isSaved = true;
-          console.log('name: ', show.name, 'state name: ', this.state.showListObject[show.name]);
-          return show;
-        } else {
-          show.isSaved = false;
-          return show;
-        }
-      })
-      console.log(results);
-      this.setState({
-        tvResult: results
-      })
-    })
-  }
-
+  // handle change function used for when we call axios on submission
   handleChange = (e) => {
     const target = e.target;
 
@@ -88,19 +45,13 @@ class TvShows extends Component {
     })
   }
 
+  // checks to see if show is in database. snapshot.val() returns null if it does not exist, that's why we have the if(!dataObj)
   addToDatabase = (show) => {
-    console.log(show);
-    let isIn = false;
     const tvShowRef = firebase.database().ref(`/tvShows/${show.name}`);
     const tvShowListRef = firebase.database().ref('/tvShows');
     tvShowRef.once('value', snapshot => {
-      // console.log(snapshot.val());
       const dataObj = snapshot.val();
-      // for (let tvShowName in dataObj) {
-      //   if (tvShowName === show.name) {
-      //     isIn = true;
-      //   }  
-      // }
+    
       if (!dataObj) {
         show.isSaved = true;
         tvShowRef.update({
@@ -112,11 +63,11 @@ class TvShows extends Component {
         this.setState({
           numberOfShows: this.state.numberOfShows + 1
         })
-        console.log('not in');
       }
     })
   }
 
+  // similiar to the function above, except we do not need to check to see if it exists (we already know) it also modifies the state which causes a rerender and changes the class of the bookmark so it's not coloured in with orange anymore 
   removeFromDatabase = (show) => {
     const tvShowRef = firebase.database().ref(`/tvShows/${show.name}`);
     const tvShowListRef = firebase.database().ref('/tvShows');
@@ -142,28 +93,53 @@ class TvShows extends Component {
     })
   }
 
+  // in the .then it compares each show against the one in the initial showListObject which is from the database. if it is then we add "isSaved: true" to the show otherwise it is "isSaved: true"
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const apiKey = "262b2d458b0315ed4049499ffec1d210";
+    
+    axios({
+      url: 'https://api.themoviedb.org/3/discover/tv',
+      method: 'GET',
+      responseType: 'json',
+      params: {
+        api_key: apiKey,
+        language: `en-US`,
+        with_genres: this.state.tvGenre,
+        page: 1
+      }
+    }).then(res => {
+      const results = res.data.results.map(show => {
+        if (show.name === this.state.showListObject[`${show.name}`]) {
+          show.isSaved = true;
+          return show;
+        } else {
+          show.isSaved = false;
+          return show;
+        }
+      })
+      this.setState({
+        tvResult: results
+      })
+    })
+  }
+
   render() {
     return (
       <div id="tvShows" className="tvShows">
         <div className="wrapper">
           <h2>Search for a TV Show</h2>
           <div className="showContainer">
-            <p>Number of stored tv shows: {this.state.numberOfShows}</p>
+            <p>Number of stored tv shows: <span>{this.state.numberOfShows}</span></p>
             <div className="showSearch">
-              <form onSubmit={this.handleSubmit}>             
+              <form>             
                 <fieldset>
                   <label className={
                       this.state.tvGenre === "16"  
                         ? `genreCategoryOption activated`
                         : `genreCategoryOption`
                     } htmlFor="animation">Animation
-                    <input 
-                      type="radio" 
-                      name="categoryGenre" 
-                      value="16" 
-                      id="animation" 
-                      onChange={this.handleChange}
-                    />
+                    <input type="radio" name="categoryGenre" value="16" id="animation" onChange={this.handleChange}/>
                   </label>
                   <label className={
                     this.state.tvGenre === "10765"
@@ -221,37 +197,37 @@ class TvShows extends Component {
                   } htmlFor="soap">Soap
                     <input type="radio" name="categoryGenre" value="10766" id="soap" onChange={this.handleChange} />
                   </label>
-                </fieldset>
-                
-                <button value="getShows" className="buttons dark">Search</button>
-                <button value="submit" className="buttons dark"><i className="fas fa-random" title="Click for random option"></i></button>
-                <button className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
+                </fieldset>     
+                <button onClick={this.handleSubmit} className="buttons dark">Search</button>
+                <a className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</a>
               </form>
             </div>
             <div id="showResults" className="showSelections">
               <ul>
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
-                    <li>
-                      <i className={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => {
-                        if (show.isSaved) {
-                          this.removeFromDatabase(show);
-                        } else { // laura solved THIS ELSE STATEMENT
-                          this.addToDatabase(show);
-                        }
-                      }}></i>
-                      <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
+                    <li key={show.name}>
+                      <i 
+                        className={`fas fa-bookmark ${show.isSaved}`} 
+                        title="Add to favourites" onClick={() => {
+                          if (show.isSaved) {
+                            this.removeFromDatabase(show);
+                          } else { 
+                            this.addToDatabase(show);
+                          }
+                        }}
+                      ></i>
+                      <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="Poster of show" className="tvImage" />
                     </li>
                   )
                 })}
               </ul>
-              {/* <button value="showRestaurants" className="goToRestaurants">Go to restaurants!</button> */}
             </div>
           </div>
         </div>
       </div>
-
     )
   }
 }
+
 export default TvShows;

@@ -178,7 +178,7 @@ class TvShows extends Component {
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
                     <li>
-                      <i class={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
+                      <i className={`fas fa-bookmark ${show.isSaved}`} title="Add to favourites" onClick={() => this.addToDatabase(show)}></i>
                       <img src={`https://image.tmdb.org/t/p/original${show.poster_path}`} alt="" className="tvImage" />
                     </li>
                   )

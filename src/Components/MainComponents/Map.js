@@ -100,7 +100,7 @@ const Map = ({ addRestaurants, showRestaurants }) => {
 
   return (
     <div className="mapContainer">
-      <h2 class="mapTitle">BF</h2>
+      {/* <h2 class="mapTitle">BF</h2> */}
       <Search panTo={panTo} setMarker={setMarker} />
 
       <GoogleMap
@@ -127,7 +127,7 @@ const Map = ({ addRestaurants, showRestaurants }) => {
                     lng: business.coordinates.longitude,
                   }}
                   icon={{
-                    url: "./food.png",
+                    url: "./restaurant.svg",
                     scaledSize: new window.google.maps.Size(30, 30),
                     origin: new window.google.maps.Point(0, 0),
                     anchor: new window.google.maps.Point(15, 15),

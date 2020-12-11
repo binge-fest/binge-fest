@@ -189,6 +189,9 @@ input[type=radio] {
 .tvShows {
   text-align: center;
 }
+.showSelections .true {
+  color: #f46e00; 
+}
 
 .tvShows label { 
   cursor: pointer;
@@ -217,6 +220,10 @@ input[type=radio] {
 .showSelections li {
   position: relative;
 }
+.showSelections ul {
+  margin-bottom: 0;
+  padding-bottom: 25px;
+}
 
 .tvImage {
   width: 200px;
@@ -225,7 +232,7 @@ input[type=radio] {
 
 .fa-bookmark {
   color: #700014;
-  text-shadow: 0 0 5px white;
+  text-shadow: 0 0 5px black;
   font-size: 2rem;
   position: absolute;
   bottom: 23px;
@@ -319,6 +326,48 @@ input[type=radio] {
   margin-right: 15px;
 }
 
+.restaurant {
+  position: relative;
+}
+
+.removeRestaurant {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  color: #700014;
+  cursor: pointer;
+}
+
+.addRestaurantToFave {
+  position: absolute;
+  font-size: 1rem;
+  bottom: 5px;
+  right: 5px;
+  color: #700014;
+  cursor: pointer;
+}
+
+.removeRestaurant:hover,
+.removeRestaurant:focus,
+.addRestaurantToFave:hover,
+.addRestaurantToFave:focus {
+  color: #f46e00;
+}
+
+.getRestaurantsButton,
+.gotToResults {
+  background-color: #700014;
+}
+
+.getRestaurantsButton {
+  color: #ebe3ca;
+}
+
+.showMeResultsDiv {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
 /* Map styles */
 
 .mapContainer {
@@ -340,6 +389,8 @@ input[type=radio] {
   left: 20px;
   z-index: 10;
 }
+
+
 
 .data-reach-combobox {
   width: 200px;
@@ -377,6 +428,14 @@ input[type=radio] {
   text-align: right;
 }
 
+<<<<<<< HEAD
+=======
+.goToResults {
+  background-color: #700014;
+  color: #ebe3ca;
+}
+
+>>>>>>> 7e84cfd2f7cf21f209b597477a90151ad8618e03
 /* Results Styles */
 .results {
   background-color: #700014;
@@ -394,7 +453,6 @@ input[type=radio] {
 
 .allResults {
   display: flex;
-  justify-content: space-evenly;
   padding-bottom: 50px;
 }
 
@@ -439,7 +497,7 @@ input[type=radio] {
 }
 
 .foodResults {
-  padding-left: 20px;
+  padding-left: 100px;
 }
 .foodImage {
   width: 400px;
@@ -474,6 +532,14 @@ footer a:focus {
   color: #f46e00;
 }
 
+/* Responsive Design */
+
+/* Portrait tablet and small desktops */
+@media (max-width: 1080px) {
+  .restaurants h2 {
+    padding-top: 120px;
+  }
+}
 
 @media screen and (max-width: 650px) {
   .buttons {
@@ -501,7 +567,60 @@ footer a:focus {
   }
 }
 
+@media (max-width: 940px) {
+  .restaurantWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .mapContainer {
+    width: 100%;
+  }
 
+  .restaurantResults {
+    width: 80%;
+  }
+
+  .showMeResultsDiv {
+    margin-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+  }
+
+  .allResults {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }  
+
+  .showResults {
+    border: none;
+    border-bottom: 2px solid #ebe3ca;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .foodResults {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .restaurantImage {
+    display: none;
+  }
+
+}
 
 

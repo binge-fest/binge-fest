@@ -29,9 +29,9 @@ class Restaurants extends Component {
           <h2>Find restaurants near you</h2>
           <div className="restaurantWrapper">
             <Map addRestaurants={this.props.addRestaurants} showRestaurants={this.showRestaurants} className="mapComponent" />
-            <div className="restaurantResults">
               {this.state.restaurantArr !== [] && (
-                this.state.restaurantArr.map(item => {
+              <div className="restaurantResults">
+                {this.state.restaurantArr.map(item => {
                   return (
                     <div className="restaurant" key={item.id}>
                       {/* <img src={item.image_url} alt=""/> */}
@@ -40,6 +40,9 @@ class Restaurants extends Component {
                         style={{ backgroundImage: `url(${item.image_url})` }}
                       ></div>
                       <div className="restaurantText">
+                        <div className="removeRestaurant">
+                          <i class="fas fa-times" title="Remove from list"></i>
+                        </div>
                         <h4>{item.name}</h4>
                         <p>{item.categories.map((category, index) => {
                           if (index === 0) {
@@ -48,16 +51,19 @@ class Restaurants extends Component {
                             return ", " + category.title
                           }
                         })}</p>
+                        <div className="addRestaurantToFave" title="Add to favourites">
+                        <i class="fas fa-star"></i>
+                        </div>
                       </div>
                     </div>
                   )
-                })
+                })}
+              </div>
               )}
-            </div>
           </div>
           <div className="showMeResultsDiv">
             
-            <Link smooth={true} to="results" className="buttons">Show me results!</Link>
+            <Link smooth={true} to="results" className="buttons goToResults">Show me results!</Link>
 
 
 

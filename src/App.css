@@ -435,17 +435,9 @@ input[type=radio] {
 }
 
 .showMeResultsDiv {
-  text-align: right;
+  text-align: center;
 }
 
-<<<<<<< HEAD
-=======
-.goToResults {
-  background-color: #700014;
-  color: #ebe3ca;
-}
-
->>>>>>> 7e84cfd2f7cf21f209b597477a90151ad8618e03
 /* Results Styles */
 .results {
   background-color: #700014;

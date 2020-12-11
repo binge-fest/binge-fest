@@ -132,7 +132,7 @@ class TvShows extends Component {
           <div className="showContainer">
             <p>Number of stored tv shows: <span>{this.state.numberOfShows}</span></p>
             <div className="showSearch">
-              <form onSubmit={this.handleSubmit}>             
+              <form>             
                 <fieldset>
                   <label className={
                       this.state.tvGenre === "16"  
@@ -198,16 +198,15 @@ class TvShows extends Component {
                     <input type="radio" name="categoryGenre" value="10766" id="soap" onChange={this.handleChange} />
                   </label>
                 </fieldset>     
-                <button value="getShows" className="buttons dark">Search</button>
-                <button value="submit" className="buttons dark"><i className="fas fa-random" title="Click for random option"></i></button>
-                <button className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</button>
+                <button onClick={this.handleSubmit} className="buttons dark">Search</button>
+                <a className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</a>
               </form>
             </div>
             <div id="showResults" className="showSelections">
               <ul>
                 {this.state.tvResult && this.state.tvResult.map(show => {
                   return (
-                    <li>
+                    <li key={show.name}>
                       <i 
                         className={`fas fa-bookmark ${show.isSaved}`} 
                         title="Add to favourites" onClick={() => {

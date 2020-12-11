@@ -105,11 +105,15 @@ class Results extends Component {
                     return star
                   })} Reviews: {this.state.restaurant.review_count}</h4>
                   <h4>{this.state.restaurant.categories && (
-                    this.state.restaurant.categories.map(category => {
-                      return category.title + ', '
+                    this.state.restaurant.categories.map((category, index) => {
+                      if (this.state.restaurant.categories.length - 1 === index) {
+                        return category.title;
+                      } else {
+                        return category.title + ', ';
+                      }
                   }))}</h4>
                   <h4>Phone: {this.state.restaurant.display_phone}</h4>
-                  <h4>Distance from user: {Math.round(this.state.restaurant.distance / 100) / 10}km</h4>
+                  <h4>Distance: {Math.round(this.state.restaurant.distance / 100) / 10}km</h4>
                 </div>
               )}
           </div>

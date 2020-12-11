@@ -33,9 +33,11 @@ class App extends Component {
         <Header/>
         <SwitchTransition mode="out-in">
           <CSSTransition
+            in={true}
+            appear={true}
             key={this.state.isOn ? "on" : "off"}
-            timeout={1000}
-            classNames='fade'
+            timeout={650}
+            classNames="fade"
           >
             <div>
               {this.state.isOn 

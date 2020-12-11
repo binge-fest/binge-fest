@@ -125,6 +125,24 @@ header p {
   margin: 5px;
 }
 
+/* fade classes from @react-transition-group */
+.fade-enter{
+   opacity: 0;
+}
+.fade-exit{
+   opacity: 1;
+}
+.fade-enter-active{
+   opacity: 1;
+}
+.fade-exit-active{
+   opacity: 0;
+}
+.fade-enter-active,
+.fade-exit-active{
+   transition: opacity 650ms linear;
+}
+
 /* TV Component Styles */
 
 .tvShows, .restaurants {
@@ -301,13 +319,12 @@ input[type=radio] {
 }
 
 .restaurantResults {
-  width: 40%;
   font-size: 1.2rem;
   overflow-y: auto;
-  max-height: 80vh;
-  margin-top: 40px;
-  margin-left: 25px;
+  margin: 20px 10px 0 15px;
   font-family: 'Montserrat', sans-serif;
+  height: 70vh;
+  max-height: 800px;
 }
 
 .restaurantResults .restaurant {
@@ -320,7 +337,7 @@ input[type=radio] {
 }
 
 .restaurantResults .restaurantImage {
-  width: 25%;
+  width: 33%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -328,7 +345,7 @@ input[type=radio] {
 }
 
 .restaurantImage {
-  border: 3px solid #700014;
+  border: 2px solid #700014;
   margin-right: 15px;
 }
 
@@ -385,12 +402,16 @@ input[type=radio] {
   background-color: #eee;
   border-radius: 6px;
   position: relative;
-  height: 80vh;
+  height: 70vh;
   max-height: 800px;
   width: 47.5vw;
-  margin-bottom: 200px;
+  margin-bottom: 140px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+.mapContainer h2 {
+  padding-top: 8px;
 }
 
 .mapContainer .mapTitle {
@@ -414,7 +435,10 @@ input[type=radio] {
 }
 
 .mapContainer .buttons {
-  margin-top: 100px;
+  margin-top: 50px;
+}
+.showMeResultsDiv .buttons {
+  margin-top: 40px;
 }
 
 /* this is styling for the drop down list when searching locations, the class provided is from the react */

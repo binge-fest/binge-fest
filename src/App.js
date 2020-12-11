@@ -28,12 +28,9 @@ class App extends Component {
   }
 
   render() {
-    // const { isOn } = this.state
-
     return (
       <div className="app">
         <Header/>
-
         <SwitchTransition mode="out-in">
           <CSSTransition
             key={this.state.isOn ? "on" : "off"}

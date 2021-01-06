@@ -624,12 +624,16 @@ footer a:focus {
     align-items: center;
   }
 
+  .restaurantResultsContainer {
+    width: 100%;
+  }
+
   .mapContainer {
     width: 100%;
   }
 
   .restaurantResults {
-    width: 80%;
+    width: 100%;
   }
 
   .showMeResultsDiv {
@@ -657,6 +661,14 @@ footer a:focus {
     text-align: center;
     padding: 0;
   }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .chooseAnotherDiv {
+    padding-bottom: 35px;
+  }
   
 }
 
@@ -680,4 +692,12 @@ footer a:focus {
   }
 }
 
+@media (max-width: 480px) {
+  .wrapper {
+    position: static;
+  }
 
+  .buttons {
+    padding: 15px;
+  }
+}

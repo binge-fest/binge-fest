@@ -191,7 +191,7 @@ input[type=radio] {
 }
 
 .showSelections {
-  padding-left: 20px;
+  width: 100%;
 }
 
 .tvShows {
@@ -226,7 +226,8 @@ input[type=radio] {
 .showSelections ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
+  justify-content: space-evenly; 
+  padding-left: 0;
 }
 
 .showSelections li {
@@ -239,7 +240,6 @@ input[type=radio] {
 
 .tvImage {
   width: 200px;
-  margin-right: 15px;
 }
 
 .fa-bookmark {
@@ -270,6 +270,10 @@ input[type=radio] {
 .activated {
   background-color: #f46e00;
   font-weight: bold;
+}
+
+.restaurantButtonContainer {
+  padding-bottom: 30px;
 }
 
 /* Restaurants styles */
@@ -699,5 +703,9 @@ footer a:focus {
 
   .buttons {
     padding: 15px;
+  }
+
+  header p {
+    margin-bottom: 25px;
   }
 }

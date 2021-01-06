@@ -199,7 +199,6 @@ class TvShows extends Component {
                   </label>
                 </fieldset>     
                 <button onClick={this.handleSubmit} className="buttons dark">Search</button>
-                <a className="buttons dark" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</a>
               </form>
             </div>
             <div id="showResults" className="showSelections">
@@ -222,6 +221,9 @@ class TvShows extends Component {
                   )
                 })}
               </ul>
+            </div>
+            <div className="restaurantButtonContainer">
+                <a className="buttons dark chooseRestaurant" id="dark" onClick={this.props.changeInputScreen}>choose your Restaurant</a>
             </div>
           </div>
         </div>
